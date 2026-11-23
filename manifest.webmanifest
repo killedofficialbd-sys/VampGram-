@@ -1,0 +1,26 @@
+{
+  "name": "Vampgram",
+  "short_name": "Vampgram",
+  "description": "Личное пространство для сообщений и звонков",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#10080b",
+  "theme_color": "#10080b",
+  "icons": [
+    {
+      "src": "vampgram-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "vampgram-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
