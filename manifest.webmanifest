@@ -1,7 +1,7 @@
 {
-  "name": "Vampgram",
+  "name": "Vampgram 5.0 — Ultimate Messenger",
   "short_name": "Vampgram",
-  "description": "Личное пространство для сообщений и звонков",
+  "description": "Vampgram 5.0 — тёмный мессенджер, истории, группы, каналы и звонки",
   "lang": "ru",
   "start_url": "./",
   "scope": "./",

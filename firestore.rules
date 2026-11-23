@@ -3,44 +3,87 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() { return request.auth != null; }
     function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
-    function isMember(members) { return signedIn() && request.auth.uid in members; }
+    function isFounder() {
+      return signedIn()
+        && request.auth.token.email == 'killedofficialbd@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+    function activeUser() {
+      // Older Vampgram user documents do not contain accountStatus.
+      // Missing status means active; only an explicit suspended value blocks access.
+      return signedIn()
+        && (!exists(/databases/$(database)/documents/users/$(request.auth.uid))
+          || !('accountStatus' in get(/databases/$(database)/documents/users/$(request.auth.uid)).data)
+          || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.accountStatus != 'suspended');
+    }
+    function isMember(members) { return activeUser() && members is list && request.auth.uid in members; }
     function conversationMember(conversationId) {
-      return signedIn()
+      return activeUser()
         && exists(/databases/$(database)/documents/conversations/$(conversationId))
-        && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.members;
+        && (
+          (('members' in get(/databases/$(database)/documents/conversations/$(conversationId)).data)
+            && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.members)
+          || (('participants' in get(/databases/$(database)/documents/conversations/$(conversationId)).data)
+            && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants)
+          || (('userIds' in get(/databases/$(database)/documents/conversations/$(conversationId)).data)
+            && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.userIds)
+          || (('memberIds' in get(/databases/$(database)/documents/conversations/$(conversationId)).data)
+            && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.memberIds)
+        );
     }
-
-    function mediaParent(mediaId) {
-      return get(/databases/$(database)/documents/media/$(mediaId)).data;
-    }
-
+    function mediaParent(mediaId) { return get(/databases/$(database)/documents/media/$(mediaId)).data; }
     function canReadMedia(mediaId) {
-      return signedIn()
+      return activeUser()
         && exists(/databases/$(database)/documents/media/$(mediaId))
         && (mediaParent(mediaId).kind == 'avatar'
+          || (mediaParent(mediaId).kind == 'story')
           || request.auth.uid in mediaParent(mediaId).members);
     }
-
     function canWriteMedia(mediaId) {
-      return signedIn()
+      return activeUser()
         && exists(/databases/$(database)/documents/media/$(mediaId))
-        && ((mediaParent(mediaId).kind == 'avatar'
-              && mediaParent(mediaId).ownerId == request.auth.uid)
-          || (mediaParent(mediaId).kind == 'attachment'
-              && mediaParent(mediaId).senderId == request.auth.uid));
+        && ((mediaParent(mediaId).kind == 'avatar' && mediaParent(mediaId).ownerId == request.auth.uid)
+          || (mediaParent(mediaId).kind == 'story' && mediaParent(mediaId).ownerId == request.auth.uid)
+          || (mediaParent(mediaId).kind == 'attachment' && mediaParent(mediaId).senderId == request.auth.uid));
     }
-
+    function validFounderField() {
+      return !('isFounder' in request.resource.data)
+        || request.resource.data.isFounder == false
+        || (request.resource.data.isFounder == true && isFounder());
+    }
+    function validReadAt() {
+      return !('readAt' in request.resource.data)
+        || (request.resource.data.readAt is map
+          && request.resource.data.readAt.keys().hasOnly(resource.data.members)
+          && ((!('readAt' in resource.data)
+            && request.resource.data.readAt.keys().hasOnly([request.auth.uid]))
+            || (('readAt' in resource.data)
+              && request.resource.data.readAt.diff(resource.data.readAt).affectedKeys().hasOnly([request.auth.uid]))));
+    }
+    function validTyping() {
+      return !('typing' in request.resource.data)
+        || (request.resource.data.typing is map
+          && request.resource.data.typing.keys().hasOnly(resource.data.members)
+          && ((!('typing' in resource.data)
+            && request.resource.data.typing.keys().hasOnly([request.auth.uid]))
+            || (('typing' in resource.data)
+              && request.resource.data.typing.diff(resource.data.typing).affectedKeys().hasOnly([request.auth.uid]))));
+    }
 
     match /users/{uid} {
       allow get: if signedIn();
-      allow list: if false;
+      allow list: if isFounder();
       allow create: if isOwner(uid)
         && request.resource.data.uid == uid
-        && request.resource.data.keys().hasOnly(['uid','displayName','username','photoURL','bio','createdAt','updatedAt','lastSeen']);
-      allow update: if isOwner(uid)
-        && (!('uid' in resource.data) || resource.data.uid == uid)
-        && request.resource.data.uid == uid
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uid','displayName','username','photoURL','bio','updatedAt','lastSeen']);
+        && request.resource.data.keys().hasOnly(['uid','displayName','username','photoURL','bio','isFounder','createdAt','updatedAt','lastSeen'])
+        && validFounderField();
+      allow update: if (isOwner(uid)
+          && (!('uid' in resource.data) || resource.data.uid == uid)
+          && request.resource.data.uid == uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uid','displayName','username','photoURL','bio','isFounder','updatedAt','lastSeen'])
+          && validFounderField())
+        || (isFounder()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['accountStatus','adminNote','adminUpdatedAt']));
       allow delete: if false;
     }
 
@@ -82,30 +125,59 @@ service cloud.firestore {
     }
 
     match /conversations/{conversationId} {
-      // A signed-in user may check a deterministic conversation path when it does not yet exist.
-      // Existing conversations remain readable only by their two members.
       allow get: if signedIn()
         && (!exists(/databases/$(database)/documents/conversations/$(conversationId))
-          || isMember(resource.data.members));
-      allow list: if isMember(resource.data.members);
-      allow create: if isMember(request.resource.data.members)
-        && request.resource.data.members.size() == 2
-        && request.resource.data.type == 'direct'
-        && request.resource.data.keys().hasOnly(['members','type','memberProfiles','lastMessage','updatedAt','unread','createdAt']);
-      allow update: if isMember(resource.data.members)
+          || isFounder()
+          || (('members' in resource.data) && request.auth.uid in resource.data.members)
+          || (('participants' in resource.data) && request.auth.uid in resource.data.participants)
+          || (('userIds' in resource.data) && request.auth.uid in resource.data.userIds)
+          || (('memberIds' in resource.data) && request.auth.uid in resource.data.memberIds));
+      // Preserve visibility of private chats from all released Vampgram schemas.
+      allow list: if isFounder()
+        || (signedIn() && (
+          (('members' in resource.data) && request.auth.uid in resource.data.members)
+          || (('participants' in resource.data) && request.auth.uid in resource.data.participants)
+          || (('userIds' in resource.data) && request.auth.uid in resource.data.userIds)
+          || (('memberIds' in resource.data) && request.auth.uid in resource.data.memberIds)
+        ));
+      allow create: if activeUser() && isMember(request.resource.data.members)
+        && request.resource.data.members.size() >= 2
+        && request.resource.data.members.size() <= 50
+        && request.resource.data.type in ['direct','group']
+        && ((request.resource.data.type == 'direct' && request.resource.data.members.size() == 2)
+          || (request.resource.data.type == 'group'
+            && request.resource.data.groupName is string
+            && request.resource.data.groupName.size() >= 1
+            && request.resource.data.groupName.size() <= 48))
+        && request.resource.data.keys().hasOnly(['members','type','groupName','memberProfiles','lastMessage','updatedAt','unread','readAt','typing','createdAt']);
+      allow update: if activeUser() && isMember(resource.data.members)
         && request.resource.data.members == resource.data.members
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastMessage','updatedAt','unread','memberProfiles']);
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastMessage','updatedAt','unread','memberProfiles','readAt','typing','groupName'])
+        && validReadAt()
+        && validTyping();
       allow delete: if false;
 
       match /messages/{messageId} {
         allow read: if conversationMember(conversationId);
         allow create: if conversationMember(conversationId)
           && request.resource.data.senderId == request.auth.uid
-          && request.resource.data.keys().hasOnly(['senderId','senderName','type','text','attachment','createdAt'])
+          && request.resource.data.keys().hasOnly(['senderId','senderName','senderIsFounder','type','text','attachment','replyTo','createdAt'])
+          && request.resource.data.senderIsFounder == isFounder()
           && request.resource.data.type in ['text','image','video','audio','file']
           && request.resource.data.text is string
           && request.resource.data.text.size() <= 5000;
-        allow update: if false;
+        allow update: if conversationMember(conversationId)
+          && ((resource.data.senderId == request.auth.uid
+              && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text','editedAt'])
+              && request.resource.data.text is string
+              && request.resource.data.text.size() > 0
+              && request.resource.data.text.size() <= 5000)
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions'])
+              && request.resource.data.reactions is map
+              && ((!('reactions' in resource.data)
+                  && request.resource.data.reactions.keys().hasOnly([request.auth.uid]))
+                || (('reactions' in resource.data)
+                  && request.resource.data.reactions.diff(resource.data.reactions).affectedKeys().hasOnly([request.auth.uid]))))); 
         allow delete: if conversationMember(conversationId) && resource.data.senderId == request.auth.uid;
       }
     }
@@ -113,7 +185,7 @@ service cloud.firestore {
     match /calls/{callId} {
       allow get: if isMember(resource.data.members);
       allow list: if signedIn() && resource.data.calleeId == request.auth.uid;
-      allow create: if signedIn()
+      allow create: if activeUser()
         && request.resource.data.callerId == request.auth.uid
         && request.resource.data.members.size() == 2
         && request.auth.uid in request.resource.data.members
@@ -121,11 +193,10 @@ service cloud.firestore {
         && request.resource.data.calleeId != request.auth.uid
         && request.resource.data.status == 'ringing'
         && request.resource.data.type in ['audio','video'];
-      allow update: if isMember(resource.data.members)
+      allow update: if activeUser() && isMember(resource.data.members)
         && request.resource.data.members == resource.data.members
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['answer','status','updatedAt']);
       allow delete: if false;
-
       match /candidates/{candidateId} {
         allow read: if isMember(get(/databases/$(database)/documents/calls/$(callId)).data.members);
         allow create: if isMember(get(/databases/$(database)/documents/calls/$(callId)).data.members)
@@ -135,17 +206,14 @@ service cloud.firestore {
       }
     }
 
-    // Base64 media is stored in Firestore documents, split into small chunks
-    // so no individual document approaches Firestore's 1 MiB document limit.
     match /media/{mediaId} {
-      // Allow a signed-in owner to check whether their avatar document exists before creating it.
-      // Existing attachment metadata is still limited to conversation members.
-      allow get: if signedIn()
+      allow get: if activeUser()
         && (!exists(/databases/$(database)/documents/media/$(mediaId))
           || resource.data.kind == 'avatar'
+          || resource.data.kind == 'story'
           || request.auth.uid in resource.data.members);
       allow list: if false;
-      allow create: if signedIn()
+      allow create: if activeUser()
         && ((request.resource.data.kind == 'avatar'
               && request.resource.data.ownerId == request.auth.uid
               && request.resource.data.contentType is string
@@ -153,10 +221,18 @@ service cloud.firestore {
               && request.resource.data.size is int && request.resource.data.size > 0 && request.resource.data.size <= 512000
               && request.resource.data.totalChunks is int && request.resource.data.totalChunks > 0 && request.resource.data.totalChunks <= 3
               && request.resource.data.keys().hasOnly(['kind','ownerId','contentType','size','totalChunks','createdAt','updatedAt']))
+          || (request.resource.data.kind == 'story'
+              && request.resource.data.ownerId == request.auth.uid
+              && request.resource.data.contentType is string
+              && request.resource.data.contentType.matches('(image/.*|video/.*)')
+              && request.resource.data.size is int && request.resource.data.size > 0 && request.resource.data.size <= 4194304
+              && request.resource.data.totalChunks is int && request.resource.data.totalChunks > 0 && request.resource.data.totalChunks <= 16
+              && request.resource.data.keys().hasOnly(['kind','ownerId','contentType','size','totalChunks','createdAt','updatedAt']))
           || (request.resource.data.kind == 'attachment'
               && request.resource.data.senderId == request.auth.uid
               && request.resource.data.members is list
-              && request.resource.data.members.size() == 2
+              && request.resource.data.members.size() >= 2
+              && request.resource.data.members.size() <= 50
               && request.auth.uid in request.resource.data.members
               && request.resource.data.recipientId in request.resource.data.members
               && request.resource.data.conversationId is string
@@ -167,7 +243,7 @@ service cloud.firestore {
               && request.resource.data.totalChunks is int && request.resource.data.totalChunks > 0 && request.resource.data.totalChunks <= 24
               && request.resource.data.name is string && request.resource.data.name.size() <= 120
               && request.resource.data.keys().hasOnly(['kind','senderId','recipientId','members','conversationId','name','contentType','size','totalChunks','createdAt','updatedAt'])));
-      allow update: if signedIn()
+      allow update: if activeUser()
         && resource.data.kind == 'avatar'
         && resource.data.ownerId == request.auth.uid
         && request.resource.data.kind == 'avatar'
@@ -179,8 +255,8 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(['kind','ownerId','contentType','size','totalChunks','createdAt','updatedAt']);
       allow delete: if signedIn()
         && ((resource.data.kind == 'avatar' && resource.data.ownerId == request.auth.uid)
+          || (resource.data.kind == 'story' && resource.data.ownerId == request.auth.uid)
           || (resource.data.kind == 'attachment' && resource.data.senderId == request.auth.uid));
-
       match /chunks/{chunkId} {
         allow get, list: if canReadMedia(mediaId);
         allow create: if canWriteMedia(mediaId)
@@ -195,5 +271,92 @@ service cloud.firestore {
       }
     }
 
+    match /stories/{storyId} {
+      allow get, list: if signedIn();
+      allow create: if activeUser()
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerIsFounder == isFounder()
+        && request.resource.data.keys().hasOnly(['ownerId','ownerName','ownerUsername','ownerIsFounder','text','imageDataUrl','mediaId','mediaType','mediaName','createdAt','expiresAt'])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() <= 500
+        && ((!('mediaId' in request.resource.data) && request.resource.data.imageDataUrl is string && request.resource.data.imageDataUrl.size() <= 450000)
+          || (request.resource.data.mediaId is string && request.resource.data.mediaId.size() > 5
+            && request.resource.data.mediaType is string
+            && exists(/databases/$(database)/documents/media/$(request.resource.data.mediaId))
+            && get(/databases/$(database)/documents/media/$(request.resource.data.mediaId)).data.ownerId == request.auth.uid
+            && get(/databases/$(database)/documents/media/$(request.resource.data.mediaId)).data.kind == 'story'));
+      allow update: if signedIn() && resource.data.ownerId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text']);
+      allow delete: if (signedIn() && resource.data.ownerId == request.auth.uid) || isFounder();
+      match /views/{uid} {
+        allow get, list: if activeUser()
+          && (get(/databases/$(database)/documents/stories/$(storyId)).data.ownerId == request.auth.uid
+            || request.auth.uid == uid || isFounder());
+        allow create: if isOwner(uid) && request.resource.data.keys().hasOnly(['viewerId','viewedAt']) && request.resource.data.viewerId == uid;
+        allow update, delete: if false;
+      }
+    }
+
+    match /channels/{channelId} {
+      allow get, list: if signedIn();
+      allow create: if activeUser()
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.members is list
+        && request.resource.data.members.size() == 1
+        && request.auth.uid in request.resource.data.members
+        && request.resource.data.title is string
+        && request.resource.data.title.size() >= 1
+        && request.resource.data.title.size() <= 48
+        && request.resource.data.description is string
+        && request.resource.data.description.size() <= 240
+        && request.resource.data.keys().hasOnly(['title','description','ownerId','members','createdAt','updatedAt']);
+      allow update: if signedIn() && (
+        (resource.data.ownerId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title','description','updatedAt','members']))
+        || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members','updatedAt'])
+          && request.auth.uid in request.resource.data.members
+          && request.resource.data.members.size() == resource.data.members.size() + 1
+          && request.resource.data.members.hasAll(resource.data.members))
+      );
+      allow delete: if signedIn() && resource.data.ownerId == request.auth.uid;
+      match /posts/{postId} {
+        allow get, list: if signedIn() && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.members;
+        allow create: if signedIn()
+          && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.members
+          && request.resource.data.authorId == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 3000
+          && request.resource.data.keys().hasOnly(['authorId','authorName','text','createdAt']);
+        allow update: if signedIn() && resource.data.authorId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text']);
+        allow delete: if signedIn() && (resource.data.authorId == request.auth.uid
+          || get(/databases/$(database)/documents/channels/$(channelId)).data.ownerId == request.auth.uid);
+      }
+    }
+
+    match /reports/{reportId} {
+      allow create: if activeUser()
+        && request.resource.data.reporterId == request.auth.uid
+        && request.resource.data.targetUid is string
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() > 0
+        && request.resource.data.reason.size() <= 1000
+        && request.resource.data.status == 'open'
+        && request.resource.data.keys().hasOnly(['reporterId','targetUid','reason','status','createdAt']);
+      allow get: if isFounder() || (signedIn() && resource.data.reporterId == request.auth.uid);
+      allow list: if isFounder();
+      allow update: if isFounder()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','closedAt','closedBy']);
+      allow delete: if isFounder();
+    }
+
+    match /adminLogs/{logId} {
+      allow get, list: if isFounder();
+      allow create: if isFounder()
+        && request.resource.data.actorUid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['actorUid','actorEmail','action','targetUid','details','createdAt']);
+      allow update, delete: if false;
+    }
   }
 }

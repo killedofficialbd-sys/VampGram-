@@ -12,7 +12,8 @@
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="icon" href="vampgram.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Vampgram — мессенджер ночи</title>
+<meta name="description" content="Vampgram 5.0 — мессенджер с группами, историями, каналами, голосовыми и видеозвонками.">
+<title>Vampgram 5.0 — мессенджер ночи</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -175,6 +176,68 @@ body.large-type{--fs:16px}body.small-type{--fs:13px}
 @media(prefers-reduced-motion:reduce){#bloodAtmosphere,#bloodAtmosphere *{animation:none!important}}
 
 .chat-load-error{padding:32px 18px;text-align:center;display:grid;justify-items:center;gap:9px;color:#a98a94;font-size:11px}.chat-load-error i{font-size:24px;color:#d85a76}.chat-load-error strong{color:#f1dce2}.chat-load-error span{line-height:1.6;overflow-wrap:anywhere}.chat-load-error button{padding:8px 15px;border-radius:9px;background:#70122d;color:#fff;font-weight:800;font-size:10px}
+
+/* Vampgram 5.0 — hybrid gothic / crimson / neon layer */
+.founder-badge{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:2px 6px;border-radius:99px;background:linear-gradient(110deg,#6f1028,#d52e58);border:1px solid rgba(255,170,190,.35);color:#fff0f4;font:800 8px/1.2 Inter,system-ui,sans-serif;letter-spacing:.65px;vertical-align:middle;box-shadow:0 0 12px rgba(201,22,65,.25);white-space:nowrap}
+.founder-badge i{font-size:8px}.chat-name .founder-badge{font-size:7px}.message-author .founder-badge{font-size:7px}
+.stories-rail{display:flex;gap:10px;overflow:auto;padding:11px 12px 10px;border-bottom:1px solid var(--line);scrollbar-width:none;min-height:0}.stories-rail:empty{display:none}.story-chip{flex:none;width:58px;display:grid;justify-items:center;gap:5px;background:transparent;color:#c7aeb7;padding:0}.story-ring{width:48px;height:48px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#f04b70,#681329,#a8a0a7);display:grid;place-items:center}.story-ring img,.story-ring .story-initial{width:100%;height:100%;object-fit:cover;border-radius:50%;border:2px solid #150a10;background:#27121d;display:grid;place-items:center}.story-chip small{max-width:58px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:8px}.story-add .story-ring{background:linear-gradient(135deg,#d92b52,#471020)}.story-view{width:100%;max-height:54vh;object-fit:contain;border-radius:12px;margin-top:10px;background:#090609}.story-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025);margin-bottom:9px}.story-card p{white-space:pre-wrap;line-height:1.7;color:#f1dce2;font-size:12px}.reply-preview{padding:7px 12px;margin:0 14px 7px;border-left:3px solid #d82b51;background:rgba(132,17,47,.14);border-radius:7px;color:#d6bac3;font-size:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}.reply-preview button{background:transparent;color:#e7a8b8;padding:3px}.message-tools{display:flex;gap:5px;justify-content:flex-end;margin-top:6px;opacity:.78}.message-tool{background:rgba(10,5,9,.22);border:1px solid rgba(255,255,255,.07);color:#e7bac7;border-radius:7px;padding:4px 7px;font-size:9px}.message-tool:hover{background:rgba(255,255,255,.09)}.message-reactions{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.reaction-pill{border:1px solid rgba(255,255,255,.13);border-radius:99px;background:rgba(0,0,0,.18);padding:3px 7px;color:#fff;font-size:10px}.message-status{font-size:9px;color:#e5a7b8;margin-left:4px}.message-status.read{color:#ff92ae;text-shadow:0 0 8px rgba(255,50,110,.5)}.admin-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}.admin-stat{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:12px;padding:12px}.admin-stat strong{display:block;color:#ff8da8;font-size:19px}.admin-stat small{color:#9f818c;font-size:9px}.admin-user,.admin-report,.channel-row{display:flex;align-items:center;gap:9px;padding:10px;border:1px solid var(--line);border-radius:11px;margin:7px 0;background:rgba(255,255,255,.02)}.admin-user .grow,.channel-row .grow{flex:1;min-width:0}.admin-user strong,.channel-row strong{display:block;font-size:11px}.admin-user small,.channel-row small{display:block;color:#987d87;font-size:9px;overflow-wrap:anywhere}.admin-action{border-radius:8px;background:#651229;color:#fff;padding:7px 9px;font-size:9px;font-weight:800}.admin-action.safe{background:#234b3c}.admin-section-title{margin:16px 0 8px;color:#e5a3b5;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900}.modal-tabs{display:flex;gap:7px;overflow:auto;margin:0 0 12px}.modal-tabs button{flex:none;border:1px solid var(--line);border-radius:99px;padding:8px 11px;background:rgba(255,255,255,.03);color:#c7abb5;font-size:10px}.modal-tabs button.active{background:#74162f;color:#fff}.channel-post{padding:12px;border-bottom:1px solid var(--line)}.channel-post p{white-space:pre-wrap;font-size:11px;line-height:1.7;color:#e7d3d9}.feature-note{padding:10px 12px;border-radius:10px;background:rgba(153,22,57,.11);border:1px solid rgba(194,44,80,.18);color:#caa8b4;font-size:10px;line-height:1.6;margin:8px 0}
+@media(max-width:680px){.stories-rail{padding:9px 10px}.story-chip{width:52px}.story-ring{width:44px;height:44px}.message-tools{opacity:1}.message-tool{padding:5px 7px}}
+
+
+/* Vampgram 5.0.1 — mobile-first layout hardening */
+html,body,#authScreen,#appShell{width:100%;max-width:100%;min-width:0;}
+#appShell{min-width:0;grid-template-columns:minmax(280px,340px) minmax(0,1fr);}
+.side-head,.side-brand,.head-actions,.chat-header-meta,.composer-row,.compose-field{min-width:0;}
+.side-brand{flex-wrap:wrap;gap:10px;}
+.side-brand>.brand{flex:1 1 145px;min-width:0;}
+.head-actions{flex:1 1 100%;width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 1px 5px;scrollbar-width:thin;}
+.head-actions .icon-btn{flex:0 0 36px;width:36px;height:36px;}
+#mainPanel{min-width:0;overflow:hidden;}
+#chatHeader{min-width:0;}
+.header-actions{min-width:0;flex:none;}
+.message{min-width:0;max-width:min(82%,620px);}
+.message-attachment video,.message-attachment img,.story-view{max-width:100%;}
+.story-view{display:block;width:100%;max-height:60dvh;object-fit:contain;background:#080609;border-radius:12px;}
+.modal-card,.modal-body,.modal-foot{min-width:0;max-width:100%;}
+.modal-foot button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;}
+.admin-user,.admin-report,.channel-row{min-width:0;flex-wrap:wrap;}
+.admin-user .grow,.channel-row .grow{min-width:0;overflow-wrap:anywhere;}
+@media(max-width:760px){
+  html,body{height:100%;height:100dvh;overflow:hidden;}
+  #authScreen{display:flex;align-items:stretch;justify-content:stretch;height:100dvh;min-height:100dvh;padding:0;overflow-y:auto;}
+  .auth-wrap{display:flex;flex-direction:column;width:100%;min-height:100dvh;height:auto;border:0;border-radius:0;}
+  .auth-art{display:none!important;}
+  .auth-panel{display:flex;width:100%;min-height:100dvh;padding:calc(30px + env(safe-area-inset-top)) 22px calc(26px + env(safe-area-inset-bottom));justify-content:center;}
+  #appShell{position:fixed;inset:0;display:block;width:100vw;height:100dvh;overflow:hidden;border:0;}
+  #sidebar{position:absolute;inset:0;width:100%;height:100%;min-width:0;transform:translateX(0);visibility:visible;}
+  #mainPanel{position:absolute;inset:0;width:100%;height:100%;min-width:0;transform:translateX(100%);}
+  body.in-chat #sidebar{transform:translateX(-100%);visibility:hidden;pointer-events:none;}
+  body.in-chat #mainPanel{transform:translateX(0);}
+  .side-head{padding:calc(13px + env(safe-area-inset-top)) 14px 10px;}
+  .side-brand{align-items:center;gap:8px;margin-bottom:10px;}
+  .side-brand>.brand{flex:1 1 100%;}
+  .head-actions{flex:1 1 100%;gap:5px;}
+  .head-actions .icon-btn{flex:0 0 38px;width:38px;height:38px;}
+  .searchbox input{font-size:16px;}
+  #chatList{padding-bottom:calc(86px + env(safe-area-inset-bottom));}
+  .side-profile{padding:10px 14px calc(10px + env(safe-area-inset-bottom));}
+  .message{max-width:88%;}
+  #composer{width:100%;max-width:100%;}
+  .composer-row{width:100%;gap:5px;}
+  .compose-tools{flex:none;gap:3px;}
+  .compose-tools .icon-btn{width:34px;}
+  .compose-field{flex:1 1 0;width:0;}
+  #messageInput{width:100%;min-width:0;font-size:16px;}
+  .send-btn{flex:0 0 40px;width:40px;}
+  .toast-wrap{left:10px;right:10px;}
+}
+@media(max-width:380px){
+  .side-head{padding-left:10px;padding-right:10px;}
+  .head-actions .icon-btn{flex-basis:34px;width:34px;height:35px;}
+  .compose-tools .icon-btn{width:30px;}
+  .send-btn{flex-basis:37px;width:37px;height:37px;}
+}
+
 </style>
 </head>
 <body>
@@ -210,10 +273,11 @@ body.large-type{--fs:16px}body.small-type{--fs:13px}
 <div id="appShell" class="hidden">
  <aside id="sidebar">
   <div class="side-head">
-   <div class="side-brand"><div class="brand"><div class="brand-mark"><img src="vampgram-192.png" alt="Vampgram"></div><div><div class="brand-name">VAMPGRAM</div><div class="brand-sub">The night is yours</div></div></div><div class="head-actions"><button class="icon-btn" id="installAppBtn" title="Установить Vampgram" aria-label="Установить Vampgram"><i class="fa-solid fa-download"></i></button><button class="icon-btn" id="newChatBtn" title="Новый диалог"><i class="fa-solid fa-pen-to-square"></i></button><button class="icon-btn" id="menuBtn" title="Меню"><i class="fa-solid fa-bars"></i></button></div></div>
+   <div class="side-brand"><div class="brand"><div class="brand-mark"><img src="vampgram-192.png" alt="Vampgram"></div><div><div class="brand-name">VAMPGRAM</div><div class="brand-sub">The night is yours</div></div></div><div class="head-actions"><button class="icon-btn" id="installAppBtn" title="Установить Vampgram" aria-label="Установить Vampgram"><i class="fa-solid fa-download"></i></button><button class="icon-btn" id="storyBtn" title="Истории"><i class="fa-solid fa-circle-play"></i></button><button class="icon-btn" id="groupBtn" title="Создать группу"><i class="fa-solid fa-users"></i></button><button class="icon-btn" id="channelBtn" title="Каналы"><i class="fa-solid fa-tower-broadcast"></i></button><button class="icon-btn" id="newChatBtn" title="Новый диалог"><i class="fa-solid fa-pen-to-square"></i></button><button class="icon-btn" id="menuBtn" title="Меню"><i class="fa-solid fa-bars"></i></button><button class="icon-btn hidden" id="founderQuickBtn" title="Панель основателя" aria-label="Панель основателя"><i class="fa-solid fa-crown"></i></button></div></div>
    <div class="searchbox"><i class="fa-solid fa-magnifying-glass"></i><input id="chatSearch" placeholder="Поиск диалога или пользователя"></div>
   </div>
   <div class="side-filter"><button class="filter-chip active" data-filter="all">Все</button><button class="filter-chip" data-filter="unread">Непрочитанные</button></div>
+  <div id="storiesRail" class="stories-rail" aria-label="Истории"></div>
   <div id="chatList"><div class="welcome" style="padding:42px 18px"><div class="welcome-mark" style="width:58px;height:58px;font-size:22px"><i class="fa-solid fa-comments"></i></div><p>Твои диалоги появятся здесь.</p></div></div>
   <div class="side-profile"><div class="avatar small" id="myAvatarSmall">V</div><div class="profile-text"><strong id="myNameSmall">Пользователь</strong><small id="myEmailSmall">Аккаунт Vampgram</small></div><button class="icon-btn" id="profileBtn" title="Профиль и настройки"><i class="fa-solid fa-gear"></i></button></div>
  </aside>
@@ -228,6 +292,7 @@ body.large-type{--fs:16px}body.small-type{--fs:13px}
   <div id="typingLine"></div>
   <footer id="composer" class="hidden">
    <div id="recordingNote" class="recording-note hidden"><i class="fa-solid fa-microphone-lines"></i> Идёт запись голосового сообщения…</div>
+   <div id="replyPreview" class="reply-preview hidden"></div>
    <div class="composer-row">
     <div class="compose-tools"><button class="icon-btn" id="attachBtn" title="Прикрепить файл"><i class="fa-solid fa-paperclip"></i></button><button class="icon-btn" id="imageBtn" title="Отправить фото или видео"><i class="fa-regular fa-image"></i></button><button class="icon-btn" id="recordBtn" title="Записать голосовое"><i class="fa-solid fa-microphone"></i></button></div>
     <div class="compose-field"><textarea id="messageInput" rows="1" placeholder="Написать сообщение…"></textarea></div><button class="send-btn" id="sendBtn" title="Отправить"><i class="fa-solid fa-paper-plane"></i></button>
@@ -247,26 +312,30 @@ body.large-type{--fs:16px}body.small-type{--fs:13px}
 <script type="module">
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js';
 import {getAnalytics,isSupported} from 'https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js';
-import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,signOut,updateProfile,setPersistence,browserLocalPersistence} from 'https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js';
-import {getFirestore,doc,getDoc,setDoc,updateDoc,addDoc,collection,query,where,orderBy,onSnapshot,serverTimestamp,limit,deleteDoc,increment,getDocs,writeBatch} from 'https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js';
+import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,sendEmailVerification,reload,getIdToken,signOut,updateProfile,setPersistence,browserLocalPersistence} from 'https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js';
+import {getFirestore,doc,getDoc,setDoc,updateDoc,addDoc,collection,query,where,orderBy,onSnapshot,serverTimestamp,limit,limitToLast,deleteDoc,increment,arrayUnion,getDocs,writeBatch} from 'https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js';
 
 const firebaseConfig={apiKey:'AIzaSyBzHGjNug_tIqn3NJjm24cs9RkMs_tWV18',authDomain:'vampgram-2dbdd.firebaseapp.com',projectId:'vampgram-2dbdd',messagingSenderId:'686869751331',appId:'1:686869751331:web:85a52d6013e5e37d09b396',measurementId:'G-KVWW2PJ9LZ'};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const FOUNDER_EMAIL='killedofficialbd@gmail.com';
 // Единое облачное хранилище проекта: Cloud Firestore. Бинарные файлы кодируются в Base64 и
 // сохраняются частями в media/{mediaId}/chunks/{chunkId}. Firebase Storage и Realtime Database не используются; все данные синхронизируются через Cloud Firestore.
 const MEDIA_CHUNK_CHARS=450000;
 try{if(await isSupported())getAnalytics(app)}catch(e){console.info('Analytics недоступна в этом браузере')}
 try { await setPersistence(auth, browserLocalPersistence); } catch (e) { console.warn('Не удалось сохранить локальную сессию; используется режим Firebase по умолчанию.', e); }
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const state={user:null,profile:null,privateProfile:null,conversations:[],activeConversation:null,activePeer:null,unsubConversations:null,unsubMessages:null,unsubIncoming:null,unsubCall:null,unsubCandidates:null,authMode:'login',authFlowPending:false,filter:'all',mediaRecorder:null,recordChunks:[],recording:false,localStream:null,remoteStream:null,pc:null,currentCall:null,currentCallId:null,callRole:null,callHandled:new Set(),remoteCandidateUnsub:null,callCandidateUnsub:null,callMuted:false,cameraOff:false,mediaCache:new Map(),avatarCache:new Map(),avatarLoads:new Map(),profileSyncRunning:false,pendingRemoteCandidates:[],settingRemoteDescription:false,conversationFallback:false};
+const state={user:null,profile:null,privateProfile:null,conversations:[],activeConversation:null,activePeer:null,unsubConversations:null,unsubMessages:null,unsubIncoming:null,unsubCall:null,unsubCandidates:null,authMode:'login',authFlowPending:false,filter:'all',mediaRecorder:null,recordChunks:[],recording:false,localStream:null,remoteStream:null,pc:null,currentCall:null,currentCallId:null,callRole:null,callHandled:new Set(),remoteCandidateUnsub:null,callCandidateUnsub:null,callMuted:false,cameraOff:false,mediaCache:new Map(),avatarCache:new Map(),avatarLoads:new Map(),profileSyncRunning:false,pendingRemoteCandidates:[],settingRemoteDescription:false,conversationFallback:false,replyTo:null,messagesLoaded:false,typingTimer:null,unsubStory:null};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const initials=s=>String(s||'V').trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'V';
 const timeText=t=>{const d=t?.toDate?t.toDate():t?new Date(t):new Date();return d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})};
 const dateText=t=>{const d=t?.toDate?t.toDate():new Date(t||Date.now());return d.toLocaleDateString('ru-RU',{day:'2-digit',month:'long',year:'numeric'})};
 const fmtSize=n=>n<1024?`${n} Б`:n<1048576?`${(n/1024).toFixed(0)} КБ`:`${(n/1048576).toFixed(1)} МБ`;
+function isFounderAccount(){return String(state.user?.email||'').toLowerCase()===FOUNDER_EMAIL && !!state.user?.emailVerified && state.profile?.isFounder===true}
+function founderBadge(){return '<span class="founder-badge" title="Подтверждённый основатель Vampgram"><i class="fa-solid fa-circle-check"></i> FOUNDER</span>'}
+function millis(value){return value?.toMillis?value.toMillis():value?.seconds?value.seconds*1000:value?new Date(value).getTime():0}
 
 const PREF_KEY='vampgram.preferences.v3';
-const defaultPrefs={ambience:true,motion:true,compact:false,sound:false,typeSize:'normal',wallpaper:'crimson'};
+const defaultPrefs={ambience:true,motion:true,compact:false,sound:false,notifications:false,typeSize:'normal',wallpaper:'crimson'};
 function readPrefs(){try{return {...defaultPrefs,...JSON.parse(localStorage.getItem(PREF_KEY)||'{}')}}catch{return {...defaultPrefs}}}
 let userPrefs=readPrefs();
 function applyPrefs(){document.body.classList.toggle('ambience-off',!userPrefs.ambience);document.body.classList.toggle('motion-off',!userPrefs.motion);document.body.classList.toggle('compact-messages',!!userPrefs.compact);document.body.classList.toggle('small-type',userPrefs.typeSize==='small');document.body.classList.toggle('large-type',userPrefs.typeSize==='large');document.body.classList.remove('wallpaper-obsidian','wallpaper-crimson');document.body.classList.add(userPrefs.wallpaper==='obsidian'?'wallpaper-obsidian':'wallpaper-crimson')}
@@ -310,6 +379,7 @@ function showAuth() {
     state.activeConversation = null;
     state.activePeer = null;
     state.conversations = [];
+    $('#storiesRail').innerHTML='';
     state.authMode = 'login';
     $('#authPassword').value = '';
     $('#registerPasswordConfirm').value = '';
@@ -407,12 +477,14 @@ async function ensureUserDocuments(user, name) {
             uid: user.uid,
             displayName: name || user.displayName || user.email?.split('@')[0] || 'Новый пользователь',
             username: '', photoURL: '', bio: '',
+            ...(String(user.email||'').toLowerCase()===FOUNDER_EMAIL && user.emailVerified ? {isFounder:true} : {}),
             createdAt: serverTimestamp(), updatedAt: serverTimestamp(), lastSeen: serverTimestamp()
         });
     } else {
         const current = publicSnap.data() || {};
         const patch = { updatedAt: serverTimestamp(), lastSeen: serverTimestamp() };
         if (!current.uid) patch.uid = user.uid;
+        if (String(user.email||'').toLowerCase()===FOUNDER_EMAIL && user.emailVerified && current.isFounder!==true) patch.isFounder=true;
         await updateDoc(publicRef, patch);
     }
     if (!privateSnap.exists()) {
@@ -461,6 +533,7 @@ onAuthStateChanged(auth, async user => {
     }
     if (bootstrappingUid === user.uid) return;
     bootstrappingUid = user.uid;
+    try { await reload(user); user = auth.currentUser || user; await getIdToken(user,true); } catch(e) { console.warn('Auth profile refresh:',e); }
     state.user = user;
     state.profile = {
         uid: user.uid,
@@ -481,7 +554,9 @@ onAuthStateChanged(auth, async user => {
     await loadOwnProfile();
     if (auth.currentUser?.uid !== user.uid) return;
     renderOwnProfile();
+    if(state.profile?.accountStatus==='suspended'){toast('Доступ к Vampgram для этого аккаунта приостановлен администратором.',true);await signOut(auth);return;}
     startRealtime();
+    loadStories().catch(err=>console.warn('Stories init:',err));
 });
 function avatarMarkup(profile,cls='avatar'){const name=profile?.displayName||'V',uid=profile?.uid||'';const cached=uid?state.avatarCache.get(uid):'';const legacy=profile?.photoURL&&!profile.photoURL.startsWith('firestore-media://')?profile.photoURL:'';const src=cached||legacy;return `<div class="${cls}"${uid?` data-avatar-uid="${esc(uid)}"`:''}>${src?`<img src="${esc(src)}" alt="">`:esc(initials(name))}</div>`}
 async function readMediaBase64(mediaId){const metaSnap=await getDoc(doc(db,'media',mediaId));if(!metaSnap.exists())throw new Error('Медиафайл не найден в Firestore.');const meta=metaSnap.data();const chunksSnap=await getDocs(query(collection(db,'media',mediaId,'chunks'),orderBy('index','asc')));if(chunksSnap.size!==Number(meta.totalChunks))throw new Error('Файл сохранён не полностью: отсутствуют части Base64.');return chunksSnap.docs.map(d=>d.data().data||'').join('')}
@@ -489,57 +564,111 @@ async function saveMediaBase64(mediaId,meta,base64){const chunks=[];for(let i=0;
 async function deleteMediaBase64(mediaId){try{const snap=await getDocs(collection(db,'media',mediaId,'chunks'));const batch=writeBatch(db);snap.docs.forEach(d=>batch.delete(d.ref));batch.delete(doc(db,'media',mediaId));await batch.commit()}catch(e){console.warn('Media cleanup:',e)}}
 async function loadAvatar(uid){if(!uid)return '';if(state.avatarCache.has(uid))return state.avatarCache.get(uid);if(state.avatarLoads.has(uid))return state.avatarLoads.get(uid);const job=(async()=>{try{const mediaId=`avatar_${uid}`;const base64=await readMediaBase64(mediaId);const meta=(await getDoc(doc(db,'media',mediaId))).data();const dataURL=`data:${meta.contentType||'image/jpeg'};base64,${base64}`;state.avatarCache.set(uid,dataURL);return dataURL}catch(e){if(e?.code!=='permission-denied'&&e?.code!=='not-found')console.warn('Avatar Firestore read:',e);return ''}finally{state.avatarLoads.delete(uid)}})();state.avatarLoads.set(uid,job);return job}
 async function hydrateAvatars(root=document){const nodes=[...root.querySelectorAll('[data-avatar-uid]')];await Promise.all(nodes.map(async el=>{const uid=el.getAttribute('data-avatar-uid');if(!uid||el.dataset.avatarHydrating==='1')return;el.dataset.avatarHydrating='1';const src=await loadAvatar(uid);if(src&&el.isConnected){const img=document.createElement('img');img.src=src;img.alt='';el.replaceChildren(img)}else if(el.isConnected)el.dataset.avatarHydrating='0'}))}
-function renderOwnProfile(){$('#myAvatarSmall').innerHTML=state.profile?.photoURL&&!state.profile.photoURL.startsWith('firestore-media://')?`<img src="${esc(state.profile.photoURL)}" alt="">`:esc(initials(state.profile?.displayName));$('#myAvatarSmall').setAttribute('data-avatar-uid',state.user?.uid||'');$('#myNameSmall').textContent=state.profile?.displayName||'Пользователь';$('#myEmailSmall').textContent=state.privateProfile?.email||state.user?.email||'Аккаунт Vampgram';hydrateAvatars($('#myAvatarSmall').parentElement)}
+function renderOwnProfile(){$('#myAvatarSmall').innerHTML=state.profile?.photoURL&&!state.profile.photoURL.startsWith('firestore-media://')?`<img src="${esc(state.profile.photoURL)}" alt="">`:esc(initials(state.profile?.displayName));$('#myAvatarSmall').setAttribute('data-avatar-uid',state.user?.uid||'');$('#myNameSmall').innerHTML=esc(state.profile?.displayName||'Пользователь')+(isFounderAccount()?' '+founderBadge():'');$('#myEmailSmall').textContent=state.privateProfile?.email||state.user?.email||'Аккаунт Vampgram';$('#founderQuickBtn')?.classList.toggle('hidden',!isFounderAccount());hydrateAvatars($('#myAvatarSmall').parentElement)}
 function stopListeners(){state.unsubConversations?.();state.unsubMessages?.();state.unsubIncoming?.();state.unsubCall?.();state.unsubCandidates?.();state.remoteCandidateUnsub?.();state.callCandidateUnsub?.();state.unsubConversations=state.unsubMessages=state.unsubIncoming=state.unsubCall=state.unsubCandidates=state.remoteCandidateUnsub=state.callCandidateUnsub=null}
 function startRealtime(){
   stopListeners();
   // No composite index dependency: query by membership, then sort locally.
   const q=query(collection(db,'conversations'),where('members','array-contains',state.user.uid),limit(150));
-  state.unsubConversations=onSnapshot(q,snap=>{
-    state.conversations=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>{
+  state.unsubConversations=onSnapshot(q,async snap=>{
+    const merged=new Map();
+    const addConversationDocs=(docs)=>docs.forEach(d=>{const v=d.data()||{};const members=v.members||v.participants||v.userIds||v.memberIds||[];if(Array.isArray(members)&&members.includes(state.user.uid))merged.set(d.id,{id:d.id,...v,members});});
+    addConversationDocs(snap.docs);
+    // Always merge legacy schemas: a non-empty modern query must not hide older chats.
+    for(const field of ['participants','userIds','memberIds']){
+      try{
+        const legacy=await getDocs(query(collection(db,'conversations'),where(field,'array-contains',state.user.uid),limit(150)));
+        addConversationDocs(legacy.docs);
+      }catch(legacyError){
+        console.info('Legacy conversation lookup skipped:',field,legacyError.code||legacyError);
+      }
+    }
+    state.conversations=[...merged.values()];
+    state.conversations.sort((a,b)=>{
       const av=a.updatedAt?.toMillis?a.updatedAt.toMillis():new Date(a.updatedAt||0).getTime();
       const bv=b.updatedAt?.toMillis?b.updatedAt.toMillis():new Date(b.updatedAt||0).getTime();
       return bv-av;
     });
     renderChatList();
-    if(state.activeConversation){const updated=state.conversations.find(c=>c.id===state.activeConversation.id);if(updated)state.activeConversation=updated}
+    if(state.profile?.isFounder){const ownProfile={displayName:state.profile.displayName||'Основатель',photoURL:state.profile.photoURL||'',username:state.profile.username||'',isFounder:true};state.conversations.forEach(c=>{const old=c.memberProfiles?.[state.user.uid]||{};if(old.displayName!==ownProfile.displayName||old.photoURL!==ownProfile.photoURL||old.username!==ownProfile.username||old.isFounder!==true)updateDoc(doc(db,'conversations',c.id),{[`memberProfiles.${state.user.uid}`]:ownProfile}).catch(()=>{})});}
+    if(userPrefs.notifications&&'Notification' in window&&Notification.permission==='granted'){snap.docChanges().forEach(change=>{if(change.type!=='modified')return;const data=change.doc.data();if((data.unread?.[state.user.uid]||0)>0&&state.activeConversation?.id!==change.doc.id){const peerId=(data.members||[]).find(uid=>uid!==state.user.uid);const peer=data.memberProfiles?.[peerId]||{};try{new Notification(data.type==='group'?(data.groupName||'Группа'):(peer.displayName||'Новое сообщение'),{body:String(data.lastMessage||'Новое сообщение').slice(0,120),icon:'./vampgram-192.png',tag:change.doc.id})}catch(e){console.info('Notification unavailable:',e)}}})}
+    if(state.activeConversation){const updated=state.conversations.find(c=>c.id===state.activeConversation.id);if(updated){state.activeConversation=updated;if(state.activePeer&&!state.activePeer.isGroup&&state.activePeer.uid){const typing=!!updated.typing?.[state.activePeer.uid];$('#peerStatus').textContent=typing?'печатает…':(state.activePeer.username?'@'+state.activePeer.username:'Vampgram');}if(state.messagesLoaded){const box=$('#messages');const keep=box.scrollTop;const nearBottom=box.scrollHeight-box.scrollTop-box.clientHeight<130;const activeMsgs=box.querySelectorAll('.message.own');activeMsgs.forEach(node=>{const msg=state.cachedMessages?.find(m=>m.id===node.dataset.messageId);if(msg){const status=node.querySelector('.message-status');if(status){const read=messageIsRead(msg);status.classList.toggle('read',read);status.title=read?'Прочитано':'Отправлено';status.innerHTML=read?'<i class="fa-solid fa-check-double"></i>':'<i class="fa-solid fa-check"></i>'}}});if(!nearBottom)box.scrollTop=keep}}}
   },err=>{console.error('Conversation listener:',err);$('#chatList').innerHTML=`<div class="chat-load-error"><i class="fa-solid fa-triangle-exclamation"></i><strong>Не удалось загрузить диалоги</strong><span>${esc(authError(err))}</span><button type="button" id="retryChatsBtn">Повторить</button></div>`;$('#retryChatsBtn')?.addEventListener('click',startRealtime);toast('Не удалось загрузить диалоги: '+authError(err),true)});
   listenIncomingCalls();
 }
 function renderChatList() {
-    const filter = $('#chatSearch').value.trim().toLowerCase();
-    const items = state.conversations.filter(c => {
-        const peerId = (c.members || []).find(id => id !== state.user.uid);
-        const peer = c.memberProfiles?.[peerId] || {};
-        const name = (peer.displayName || c.title || 'Диалог').toLowerCase();
-        const username = (peer.username || '').toLowerCase();
-        const last = (c.lastMessage || '').toLowerCase();
-        const matches = !filter || name.includes(filter) || username.includes(filter) || last.includes(filter);
-        const unread = (c.unread?.[state.user.uid] || 0) > 0;
-        return matches && (state.filter === 'all' || unread);
+    const filter=$('#chatSearch').value.trim().toLowerCase();
+    const items=state.conversations.filter(c=>{
+      const isGroup=c.type==='group';const peerId=(c.members||[]).find(id=>id!==state.user.uid);const peer=c.memberProfiles?.[peerId]||{};
+      const name=(isGroup?c.groupName:(peer.displayName||c.title||'Диалог')).toLowerCase();const username=(peer.username||'').toLowerCase();const last=(c.lastMessage||'').toLowerCase();const match=!filter||name.includes(filter)||username.includes(filter)||last.includes(filter);const unread=(c.unread?.[state.user.uid]||0)>0;return match&&(state.filter==='all'||unread)
     });
-    const list = $('#chatList');
-    list.innerHTML = '';
-    if (!items.length) {
-        list.innerHTML = `<div style="padding:35px 18px;text-align:center;color:#8b707a;font-size:10px;line-height:1.8"><i class="fa-regular fa-comments" style="font-size:23px;display:block;margin-bottom:12px;color:#9e4057"></i>${filter ? 'Ничего не найдено.' : 'Пока нет диалогов. Найди пользователя через кнопку создания чата.'}</div>`;
-        return;
+    const list=$('#chatList');list.innerHTML='';
+    if(!items.length){list.innerHTML=`<div style="padding:35px 18px;text-align:center;color:#8b707a;font-size:10px;line-height:1.8"><i class="fa-regular fa-comments" style="font-size:23px;display:block;margin-bottom:12px;color:#9e4057"></i>${filter?'Ничего не найдено.':'Пока нет диалогов. Найди пользователя или создай группу.'}</div>`;return}
+    for(const c of items){
+      const isGroup=c.type==='group';const peerId=(c.members||[]).find(id=>id!==state.user.uid);const peer=c.memberProfiles?.[peerId]||{displayName:c.title||'Диалог'};const unread=c.unread?.[state.user.uid]||0;const row=document.createElement('div');row.className='chat-item'+(state.activeConversation?.id===c.id?' active':'');
+      const avatar=isGroup?`<div class="avatar">${esc(initials(c.groupName||'Г'))}</div>`:avatarMarkup({...peer,uid:peerId});
+      row.innerHTML=`${avatar}<div class="chat-meta"><div class="chat-topline"><span class="chat-name">${esc(isGroup?(c.groupName||'Группа'):(peer.displayName||c.title||'Пользователь'))}</span><span class="chat-time">${esc(timeText(c.updatedAt))}</span></div><div class="chat-bottomline"><span class="chat-last">${esc(c.lastMessage|| (isGroup?'Групповая переписка':'Начните разговор'))}</span>${unread?`<span class="unread">${unread>99?'99+':unread}</span>`:''}</div></div>`;
+      row.onclick=()=>openConversation(c,isGroup?null:peerId,isGroup?{displayName:c.groupName}:peer);list.append(row)
     }
-    for (const c of items) {
-        const peerId = (c.members || []).find(id => id !== state.user.uid);
-        if (!peerId) continue;
-        const peer = c.memberProfiles?.[peerId] || { displayName: c.title || 'Диалог' };
-        const unread = c.unread?.[state.user.uid] || 0;
-        const row = document.createElement('div');
-        row.className = 'chat-item' + (state.activeConversation?.id === c.id ? ' active' : '');
-        row.innerHTML = `${avatarMarkup({ ...peer, uid: peerId })}<div class="chat-meta"><div class="chat-topline"><span class="chat-name">${esc(peer.displayName || c.title || 'Пользователь')}</span><span class="chat-time">${esc(timeText(c.updatedAt))}</span></div><div class="chat-bottomline"><span class="chat-last">${esc(c.lastMessage || 'Начните разговор')}</span>${unread ? `<span class="unread">${unread > 99 ? '99+' : unread}</span>` : ''}</div></div>`;
-        row.onclick = () => openConversation(c, peerId, peer);
-        list.append(row);
-    }
-    hydrateAvatars(list);
+    hydrateAvatars(list)
 }
 $('#chatSearch').oninput=renderChatList;$$('.filter-chip').forEach(b=>b.onclick=()=>{$$('.filter-chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.filter=b.dataset.filter;renderChatList()});
-async function openConversation(conv,peerId,peer){state.unsubMessages?.();state.activeConversation=conv;state.activePeer={uid:peerId,...peer};document.body.classList.add('in-chat');$('#welcomePanel').classList.add('hidden');$('#chatHeader').classList.remove('hidden');$('#messages').classList.remove('hidden');$('#composer').classList.remove('hidden');$('#peerAvatar').innerHTML=peer.photoURL&&!peer.photoURL.startsWith('firestore-media://')?`<img src="${esc(peer.photoURL)}" alt="">`:esc(initials(peer.displayName));$('#peerAvatar').setAttribute('data-avatar-uid',peerId);hydrateAvatars($('#chatHeader'));$('#peerName').textContent=peer.displayName||'Пользователь';$('#peerStatus').textContent=peer.username?'@'+peer.username:'Vampgram';$('#messages').innerHTML='<div class="date-separator">История диалога</div>';const q=query(collection(db,'conversations',conv.id,'messages'),orderBy('createdAt','asc'),limit(300));state.unsubMessages=onSnapshot(q,snap=>{const box=$('#messages');const atBottom=box.scrollHeight-box.scrollTop-box.clientHeight<130;box.innerHTML='';let lastDate='';snap.docs.forEach(d=>{const m={id:d.id,...d.data()};const date=dateText(m.createdAt);if(date!==lastDate){const sep=document.createElement('div');sep.className='date-separator';sep.textContent=date;box.append(sep);lastDate=date}box.append(renderMessage(m))});if(snap.docChanges().some(c=>c.type==='added'&&c.doc.data().senderId!==state.user.uid))updateDoc(doc(db,'conversations',conv.id),{[`unread.${state.user.uid}`]:0}).catch(()=>{});if(atBottom||snap.docChanges().some(c=>c.type==='added'))box.scrollTop=box.scrollHeight},err=>{console.error(err);toast('Сообщения временно недоступны: '+authError(err),true)});await updateDoc(doc(db,'conversations',conv.id),{[`unread.${state.user.uid}`]:0}).catch(()=>{});renderChatList()}
-function renderMessage(m){const own=m.senderId===state.user.uid;const el=document.createElement('div');el.className='message'+(own?' own':'');if(!own&&m.senderName){const a=document.createElement('div');a.className='message-author';a.textContent=m.senderName;el.append(a)}if(m.text){const t=document.createElement('div');t.className='message-text';t.textContent=m.text;el.append(t)}if(m.attachment){const wrap=document.createElement('div');wrap.className='message-attachment';wrap.textContent='Загрузка вложения из Firestore…';el.append(wrap);hydrateMessageAttachment(wrap,m.attachment,m,state.activeConversation?.id)}const foot=document.createElement('div');foot.className='message-foot';foot.textContent=timeText(m.createdAt);if(own)foot.innerHTML+= ' <i class="fa-solid fa-check-double" aria-label="Отправлено"></i>';el.append(foot);return el}
+async function openConversation(conv,peerId,peer){
+  state.unsubMessages?.();state.activeConversation=conv;state.messagesLoaded=false;state.replyTo=null;$('#replyPreview').classList.add('hidden');
+  const isGroup=conv.type==='group';
+  if(isGroup){state.activePeer={uid:null,displayName:conv.groupName||'Группа',username:'',photoURL:'',isGroup:true};}
+  else{
+    try{const peerSnap=await getDoc(doc(db,'users',peerId));if(peerSnap.exists())peer={...peer,...peerSnap.data(),uid:peerId};}catch(e){console.warn('Peer profile refresh:',e)}
+    state.activePeer={uid:peerId,...peer};
+  }
+  document.body.classList.add('in-chat');$('#welcomePanel').classList.add('hidden');$('#chatHeader').classList.remove('hidden');$('#messages').classList.remove('hidden');$('#composer').classList.remove('hidden');
+  $('#peerAvatar').innerHTML=isGroup?esc(initials(conv.groupName||'Г')):(peer.photoURL&&!peer.photoURL.startsWith('firestore-media://')?`<img src="${esc(peer.photoURL)}" alt="">`:esc(initials(peer.displayName)));
+  if(!isGroup){$('#peerAvatar').setAttribute('data-avatar-uid',peerId);hydrateAvatars($('#chatHeader'))}else $('#peerAvatar').removeAttribute('data-avatar-uid');
+  $('#peerName').innerHTML=esc(isGroup?(conv.groupName||'Группа'):(peer.displayName||'Пользователь'))+(!isGroup&&peer.isFounder?' '+founderBadge():'');
+  $('#peerStatus').textContent=isGroup?`${(conv.members||[]).length} участников`:peer.username?'@'+peer.username:'Vampgram';
+  $('#audioCallBtn').classList.toggle('hidden',isGroup);$('#videoCallBtn').classList.toggle('hidden',isGroup);$('#peerInfoBtn').classList.toggle('hidden',false);
+  $('#messages').innerHTML='<div class="date-separator">История диалога</div>';
+  const q=query(collection(db,'conversations',conv.id,'messages'),orderBy('createdAt','asc'),limitToLast(300));
+  state.unsubMessages=onSnapshot(q,snap=>{
+    const box=$('#messages');const atBottom=box.scrollHeight-box.scrollTop-box.clientHeight<130;const initial=!state.messagesLoaded;
+    box.innerHTML='';let lastDate='';const rendered=snap.docs.map(d=>({id:d.id,...d.data()}));state.cachedMessages=rendered;
+    rendered.forEach(m=>{const date=dateText(m.createdAt);if(date!==lastDate){const sep=document.createElement('div');sep.className='date-separator';sep.textContent=date;box.append(sep);lastDate=date}box.append(renderMessage(m))});
+    state.messagesLoaded=true;
+    if(initial||atBottom)box.scrollTop=box.scrollHeight;
+    if((initial||atBottom)&&!document.hidden)markConversationRead();
+    if(!isGroup&&state.activePeer?.uid===peerId){const typing=!!conv.typing?.[peerId];$('#peerStatus').textContent=typing?'печатает…':(peer.username?'@'+peer.username:'Vampgram')}
+  },err=>{console.error(err);toast('Сообщения временно недоступны: '+authError(err),true)});
+  renderChatList();
+}
+async function markConversationRead(){
+  const conv=state.activeConversation;if(!conv||!state.user||document.hidden)return;
+  const box=$('#messages');if(box.scrollHeight-box.scrollTop-box.clientHeight>100)return;
+  const readAt=conv.readAt||{};const prior=millis(readAt[state.user.uid]);if(Date.now()-prior<2500&&(conv.unread?.[state.user.uid]||0)===0)return;
+  try{await updateDoc(doc(db,'conversations',conv.id),{[`readAt.${state.user.uid}`]:serverTimestamp(),[`unread.${state.user.uid}`]:0});state.activeConversation={...conv,readAt:{...(conv.readAt||{}),[state.user.uid]:new Date()},unread:{...(conv.unread||{}),[state.user.uid]:0}};renderChatList()}catch(e){console.warn('Read receipt update:',e.code||e)}
+}
+$('#messages').addEventListener('scroll',()=>{if(state.readTimer)clearTimeout(state.readTimer);state.readTimer=setTimeout(markConversationRead,450)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)markConversationRead()});
+function messageIsRead(m){const conv=state.activeConversation;if(!conv)return false;const others=(conv.members||[]).filter(uid=>uid!==state.user.uid);if(!others.length)return false;return others.every(uid=>millis(conv.readAt?.[uid])>=millis(m.createdAt)&&millis(m.createdAt)>0)}
+function renderMessage(m){
+  const own=m.senderId===state.user.uid;const el=document.createElement('div');el.className='message'+(own?' own':'');el.dataset.messageId=m.id;
+  if((!own&&m.senderName)||(own&&state.profile?.isFounder)){const a=document.createElement('div');a.className='message-author';a.innerHTML=esc(own?'Вы':m.senderName)+(m.senderIsFounder?' '+founderBadge():'');el.append(a)}
+  if(m.replyTo){const quote=document.createElement('div');quote.className='reply-preview';quote.textContent=`↳ ${m.replyTo.senderName||'Сообщение'}: ${m.replyTo.text||'Вложение'}`;el.append(quote)}
+  if(m.text){const t=document.createElement('div');t.className='message-text';t.textContent=m.text;el.append(t)}
+  if(m.attachment){const wrap=document.createElement('div');wrap.className='message-attachment';wrap.textContent='Загрузка вложения из Firestore…';el.append(wrap);hydrateMessageAttachment(wrap,m.attachment,m,state.activeConversation?.id)}
+  const foot=document.createElement('div');foot.className='message-foot';foot.textContent=timeText(m.createdAt)+(m.editedAt?' · изменено':'');
+  if(own){const status=document.createElement('span');status.className='message-status'+(messageIsRead(m)?' read':'');status.title=messageIsRead(m)?'Прочитано':'Отправлено';status.innerHTML=messageIsRead(m)?'<i class="fa-solid fa-check-double"></i>':'<i class="fa-solid fa-check"></i>';foot.append(status)}
+  el.append(foot);
+  const reactions=m.reactions||{};const tally={};Object.values(reactions).forEach(v=>{if(v)tally[v]=(tally[v]||0)+1});if(Object.keys(tally).length){const r=document.createElement('div');r.className='message-reactions';Object.entries(tally).forEach(([emoji,count])=>{const b=document.createElement('button');b.className='reaction-pill';b.type='button';b.textContent=`${emoji} ${count}`;b.onclick=()=>setReaction(m.id,emoji);r.append(b)});el.append(r)}
+  const tools=document.createElement('div');tools.className='message-tools';
+  const addTool=(label,action)=>{const b=document.createElement('button');b.className='message-tool';b.type='button';b.textContent=label;b.onclick=action;tools.append(b)};
+  addTool('Ответить',()=>setReplyTarget(m));addTool('❤️',()=>setReaction(m.id,'❤️'));
+  if(own&&m.type==='text'){addTool('Изменить',()=>editMessage(m));addTool('Удалить',()=>deleteMessage(m))}else if(own){addTool('Удалить',()=>deleteMessage(m))}
+  el.append(tools);return el;
+}
+function setReplyTarget(m){state.replyTo={id:m.id,senderName:m.senderName||'Пользователь',text:m.text||'Вложение'};const box=$('#replyPreview');box.innerHTML=`<span>Ответ: <b>${esc(state.replyTo.senderName)}</b> · ${esc(state.replyTo.text).slice(0,150)}</span><button type="button" id="cancelReply" aria-label="Отменить ответ"><i class="fa-solid fa-xmark"></i></button>`;box.classList.remove('hidden');$('#cancelReply').onclick=()=>{state.replyTo=null;box.classList.add('hidden')};$('#messageInput').focus()}
+async function setReaction(messageId,emoji){try{await updateDoc(doc(db,'conversations',state.activeConversation.id,'messages',messageId),{[`reactions.${state.user.uid}`]:emoji})}catch(e){toast('Не удалось сохранить реакцию: '+authError(e),true)}}
+async function editMessage(m){const next=prompt('Изменить сообщение:',m.text||'');if(next===null)return;const text=next.trim();if(!text||text.length>5000)return toast('Сообщение должно содержать от 1 до 5000 символов.',true);try{await updateDoc(doc(db,'conversations',state.activeConversation.id,'messages',m.id),{text,editedAt:serverTimestamp()});toast('Сообщение изменено')}catch(e){toast('Не удалось изменить: '+authError(e),true)}}
+async function deleteMessage(m){if(!confirm('Удалить это сообщение?'))return;try{await deleteDoc(doc(db,'conversations',state.activeConversation.id,'messages',m.id));toast('Сообщение удалено')}catch(e){toast('Не удалось удалить: '+authError(e),true)}}
 async function hydrateMessageAttachment(wrap,a,message,conversationId){try{let base64=state.mediaCache.get(a.id);if(!base64){base64=await readMediaBase64(a.id);state.mediaCache.set(a.id,base64)}if(!wrap.isConnected)return;wrap.replaceChildren();const dataURL=`data:${a.contentType||'application/octet-stream'};base64,${base64}`;if(a.contentType?.startsWith('image/')){const img=document.createElement('img');img.src=dataURL;img.alt=a.name||'Изображение';img.loading='lazy';img.onclick=()=>window.open(dataURL,'_blank','noopener');wrap.append(img)}else if(a.contentType?.startsWith('video/')){const v=document.createElement('video');v.src=dataURL;v.controls=true;v.playsInline=true;v.preload='metadata';wrap.append(v)}else if(a.contentType?.startsWith('audio/')){
   const player=document.createElement('div');player.className='voice-player';
   const au=document.createElement('audio');au.src=dataURL;au.preload='metadata';au.playsInline=true;
@@ -575,25 +704,18 @@ async function sendText() {
     $('#sendBtn').disabled = false;
 }
 async function sendMessage(data) {
-    const conv=state.activeConversation;
-    if(!conv||!state.user||!state.activePeer)return false;
-    const body={senderId:state.user.uid,senderName:state.profile?.displayName||'Пользователь',type:data.type||'text',text:data.text||'',attachment:data.attachment||null,createdAt:serverTimestamp()};
-    const preview=data.text||(data.attachment?.contentType?.startsWith('image/')?'Изображение':data.attachment?.contentType?.startsWith('video/')?'Видео':data.attachment?.contentType?.startsWith('audio/')?'Голосовое сообщение':'Файл');
-    try{
-      const batch=writeBatch(db);
-      const messageRef=doc(collection(db,'conversations',conv.id,'messages'));
-      batch.set(messageRef,body);
-      batch.update(doc(db,'conversations',conv.id),{lastMessage:preview,updatedAt:serverTimestamp(),[`unread.${state.activePeer.uid}`]:increment(1)});
-      await batch.commit();
-      playMessageSound();
-      return true;
-    }catch(e){
-      console.error('Atomic message transaction failed:',e);
-      toast('Сообщение не сохранено: '+authError(e),true);
-      return false;
-    }
+  const conv=state.activeConversation;if(!conv||!state.user||!state.activePeer)return false;
+  const body={senderId:state.user.uid,senderName:state.profile?.displayName||'Пользователь',senderIsFounder:!!state.profile?.isFounder,type:data.type||'text',text:data.text||'',attachment:data.attachment||null,createdAt:serverTimestamp(),...(state.replyTo?{replyTo:{...state.replyTo}}:{})};
+  const preview=data.text||(data.attachment?.contentType?.startsWith('image/')?'Изображение':data.attachment?.contentType?.startsWith('video/')?'Видео':data.attachment?.contentType?.startsWith('audio/')?'Голосовое сообщение':'Файл');
+  try{const batch=writeBatch(db);const messageRef=doc(collection(db,'conversations',conv.id,'messages'));batch.set(messageRef,body);const patch={lastMessage:preview,updatedAt:serverTimestamp()};(conv.members||[]).filter(uid=>uid!==state.user.uid).forEach(uid=>patch[`unread.${uid}`]=increment(1));batch.update(doc(db,'conversations',conv.id),patch);await batch.commit();state.replyTo=null;$('#replyPreview').classList.add('hidden');playMessageSound();return true}
+  catch(e){console.error('Atomic message transaction failed:',e);toast('Сообщение не сохранено: '+authError(e),true);return false}
 }
-$('#sendBtn').onclick=sendText;$('#messageInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendText()}});$('#messageInput').addEventListener('input',e=>{e.target.style.height='auto';e.target.style.height=Math.min(e.target.scrollHeight,130)+'px'});$('#backToChats').onclick=()=>document.body.classList.remove('in-chat');
+$('#sendBtn').onclick=sendText;
+$('#messageInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendText()}});
+async function setTyping(value){const conv=state.activeConversation;if(!conv||!state.user)return;try{await updateDoc(doc(db,'conversations',conv.id),{[`typing.${state.user.uid}`]:!!value})}catch(e){}}
+$('#messageInput').addEventListener('input',e=>{e.target.style.height='auto';e.target.style.height=Math.min(e.target.scrollHeight,130)+'px';setTyping(true);if(state.typingTimer)clearTimeout(state.typingTimer);state.typingTimer=setTimeout(()=>setTyping(false),1800)});
+$('#messageInput').addEventListener('blur',()=>setTyping(false));
+$('#backToChats').onclick=()=>{setTyping(false);document.body.classList.remove('in-chat')};
 
 const MAX_FIRESTORE_MEDIA_BYTES=6*1024*1024;
 function fileToBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const value=String(reader.result||'');const comma=value.indexOf(',');if(comma<0)return reject(new Error('Не удалось преобразовать файл в Base64.'));resolve(value.slice(comma+1))};reader.onerror=()=>reject(reader.error||new Error('Ошибка чтения файла.'));reader.readAsDataURL(file)})}
@@ -657,7 +779,7 @@ async function uploadFile(originalFile, typeOverride) {
         const base64 = await fileToBase64(file);
         $('#uploadProgressBar').style.width = '35%';
         await saveMediaBase64(messageId, {
-            kind: 'attachment', senderId: state.user.uid, recipientId: state.activePeer.uid,
+            kind: 'attachment', senderId: state.user.uid, recipientId: state.activeConversation.members.find(uid=>uid!==state.user.uid),
             members: state.activeConversation.members, conversationId: state.activeConversation.id,
             name: displayName, contentType, size: file.size, createdAt: serverTimestamp()
         }, base64);
@@ -755,9 +877,9 @@ $('#modalLayer').onclick = e => { if (e.target === $('#modalLayer')) closeModal(
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !$('#modalLayer').classList.contains('hidden')) closeModal();
 });
-$('#newChatBtn').onclick=()=>openNewChat();$('#menuBtn').onclick=()=>openSettings();$('#profileBtn').onclick=()=>openSettings();
+$('#newChatBtn').onclick=()=>openNewChat();$('#menuBtn').onclick=()=>openSettings();$('#profileBtn').onclick=()=>openSettings();$('#founderQuickBtn')?.addEventListener('click',openAdminPanel);
 function openNewChat(){showModal('Новый диалог',`<div style="color:#a68d96;font-size:10px;line-height:1.7;margin-bottom:12px">Найди пользователя по имени пользователя или адресу электронной почты.</div><div class="input-wrap" style="margin-bottom:13px"><i class="fa-solid fa-magnifying-glass"></i><input id="userLookupInput" placeholder="@username · email@example.com" autocomplete="off"></div><div id="userLookupResults" style="min-height:60px;color:#927782;font-size:10px">Введи данные пользователя и нажми поиск.</div>`,[{label:'Закрыть',onClick:closeModal},{label:'Найти',class:'secondary-btn',onClick:lookupUser}]);$('#userLookupInput').addEventListener('keydown',e=>{if(e.key==='Enter')lookupUser()})}
-async function lookupUser(){const input=$('#userLookupInput'),out=$('#userLookupResults'),value=input.value.trim();if(!value)return;out.textContent='Поиск…';try{let uid=null,profile=null;if(value.startsWith('@')){const username=value.slice(1).toLowerCase();const idx=await getDoc(doc(db,'usernames',username));if(idx.exists()){uid=idx.data().uid;const p=await getDoc(doc(db,'users',uid));if(p.exists())profile=p.data()}}else if(value.includes('@')){const normalized=value.toLowerCase();const key=await hashKey(`email:${normalized}`);const idx=await getDoc(doc(db,'userLookup',key));if(idx.exists()){uid=idx.data().uid;const p=await getDoc(doc(db,'users',uid));if(p.exists())profile=p.data()}}else{out.textContent='Укажи @username или точную электронную почту.';return}if(!uid||!profile){out.textContent='Пользователь не найден. Проверь имя пользователя или адрес почты.';return}if(uid===state.user.uid){out.textContent='Это твой собственный аккаунт.';return}out.innerHTML='';const row=document.createElement('div');row.className='search-result';row.innerHTML=`${avatarMarkup({...profile,uid},'avatar small')}<div class="details"><strong>${esc(profile.displayName||'Пользователь')}</strong><small>${profile.username?'@'+esc(profile.username):'Vampgram user'}</small></div><i class="fa-solid fa-arrow-right" style="color:#da6680"></i>`;row.onclick=()=>startDirectChat(uid,profile);out.append(row)}catch(e){console.error(e);out.textContent=authError(e)}}
+async function lookupUser(){const input=$('#userLookupInput'),out=$('#userLookupResults'),value=input.value.trim();if(!value)return;out.textContent='Поиск…';try{let uid=null,profile=null;if(value.startsWith('@')){const username=value.slice(1).toLowerCase();const idx=await getDoc(doc(db,'usernames',username));if(idx.exists()){uid=idx.data().uid;const p=await getDoc(doc(db,'users',uid));if(p.exists())profile=p.data()}}else if(value.includes('@')){const normalized=value.toLowerCase();const key=await hashKey(`email:${normalized}`);const idx=await getDoc(doc(db,'userLookup',key));if(idx.exists()){uid=idx.data().uid;const p=await getDoc(doc(db,'users',uid));if(p.exists())profile=p.data()}}else{out.textContent='Укажи @username или точную электронную почту.';return}if(!uid||!profile){out.textContent='Пользователь не найден. Проверь имя пользователя или адрес почты.';return}if(uid===state.user.uid){out.textContent='Это твой собственный аккаунт.';return}out.innerHTML='';const row=document.createElement('div');row.className='search-result';row.innerHTML=`${avatarMarkup({...profile,uid},'avatar small')}<div class="details"><strong>${esc(profile.displayName||'Пользователь')}${profile.isFounder?' '+founderBadge():''}</strong><small>${profile.username?'@'+esc(profile.username):'Vampgram user'}</small></div><i class="fa-solid fa-arrow-right" style="color:#da6680"></i>`;row.onclick=()=>startDirectChat(uid,profile);out.append(row)}catch(e){console.error(e);out.textContent=authError(e)}}
 
 async function startDirectChat(peerId,peer){
   try{
@@ -773,15 +895,15 @@ async function startDirectChat(peerId,peer){
       const id=members.join('_'),refDoc=doc(db,'conversations',id),snap=await getDoc(refDoc);
       if(!snap.exists()){
         const profiles={
-          [state.user.uid]:{displayName:state.profile?.displayName||state.user.displayName||'Пользователь',photoURL:state.profile?.photoURL||'',username:state.profile?.username||''},
-          [peerId]:{displayName:peer.displayName||'Пользователь',photoURL:peer.photoURL||'',username:peer.username||''}
+          [state.user.uid]:{displayName:state.profile?.displayName||state.user.displayName||'Пользователь',photoURL:state.profile?.photoURL||'',username:state.profile?.username||'',isFounder:!!state.profile?.isFounder},
+          [peerId]:{displayName:peer.displayName||'Пользователь',photoURL:peer.photoURL||'',username:peer.username||'',isFounder:!!peer.isFounder}
         };
-        await setDoc(refDoc,{members,type:'direct',memberProfiles:profiles,lastMessage:'',updatedAt:serverTimestamp(),unread:{[state.user.uid]:0,[peerId]:0},createdAt:serverTimestamp()});
+        await setDoc(refDoc,{members,type:'direct',memberProfiles:profiles,lastMessage:'',updatedAt:serverTimestamp(),unread:{[state.user.uid]:0,[peerId]:0},readAt:{},typing:{},createdAt:serverTimestamp()});
       }
       const fresh=await getDoc(refDoc);if(!fresh.exists())throw new Error('Диалог не появился в Firestore после создания.');
       existing={id,...fresh.data()};
     }
-    const profileMap={...(existing.memberProfiles||{}),[state.user.uid]:{displayName:state.profile?.displayName||'Пользователь',photoURL:state.profile?.photoURL||'',username:state.profile?.username||''},[peerId]:{displayName:peer.displayName||'Пользователь',photoURL:peer.photoURL||'',username:peer.username||''}};
+    const profileMap={...(existing.memberProfiles||{}),[state.user.uid]:{displayName:state.profile?.displayName||'Пользователь',photoURL:state.profile?.photoURL||'',username:state.profile?.username||'',isFounder:!!state.profile?.isFounder},[peerId]:{displayName:peer.displayName||'Пользователь',photoURL:peer.photoURL||'',username:peer.username||'',isFounder:!!peer.isFounder}};
     await updateDoc(doc(db,'conversations',existing.id),{memberProfiles:profileMap,updatedAt:existing.updatedAt||serverTimestamp()}).catch(e=>console.warn('Conversation profile refresh:',e));
     const fresh=await getDoc(doc(db,'conversations',existing.id));
     if(!fresh.exists())throw new Error('Диалог не найден после повторной загрузки.');
@@ -794,12 +916,15 @@ async function openSettings() {
     if (!loaded) { toast('Не удалось загрузить профиль. Проверь соединение и открой настройки ещё раз.', true); return; }
     const profile = state.profile || {}, privateProfile = state.privateProfile || {};
     const email = privateProfile.email || state.user.email || '';
-    showModal('Настройки Vampgram', `<div class="profile-top">${avatarMarkup({ ...profile, uid: state.user.uid }, 'avatar large')}<h3>${esc(profile.displayName || 'Пользователь')}</h3><p>${esc(email || 'Аккаунт')}</p></div>
+    showModal('Настройки Vampgram', `<div class="profile-top">${avatarMarkup({ ...profile, uid: state.user.uid }, 'avatar large')}<h3>${esc(profile.displayName || 'Пользователь')}${profile.isFounder?' '+founderBadge():''}</h3><p>${esc(email || 'Аккаунт')}</p></div>
     <div class="setting-block"><div class="setting-title">Личные данные</div>
       <div class="field"><label>Имя</label><input id="settingsName" class="modal-input" maxlength="40" value="${esc(profile.displayName || '')}" placeholder="Как тебя называть"></div>
       <div class="field"><label>Имя пользователя</label><input id="settingsUsername" class="modal-input" maxlength="24" value="${esc(profile.username || '')}" placeholder="например, vamp_user"></div>
       <div class="field"><label>О себе</label><textarea id="settingsBio" class="modal-textarea" maxlength="160" placeholder="Несколько слов о себе">${esc(profile.bio || '')}</textarea></div>
       <div class="field"><label>Фото профиля · исходный размер любой · автооптимизация</label><input id="settingsAvatar" class="modal-input file-input" type="file" accept="image/*"><small class="file-hint">Можно выбрать большую фотографию с телефона. Vampgram автоматически подготовит копию нужного размера для сохранения.</small></div>
+    </div>
+    <div class="setting-block"><div class="setting-title">Vampgram Founder</div>
+      ${String(state.user?.email||'').toLowerCase()===FOUNDER_EMAIL ? (isFounderAccount()?`<div class="setting-row"><div><strong>Подтверждённый основатель ${founderBadge()}</strong><small>Административные инструменты и Founder Console активны.</small></div><button id="openAdminButton" class="secondary-btn" type="button">Открыть админку</button></div>`:`<div class="feature-note">Для защиты административных прав подтверди адрес ${esc(FOUNDER_EMAIL)} через Firebase Authentication.</div><div class="setting-row"><div><strong>Подтверждение почты</strong><small>${state.user?.emailVerified?'Почта подтверждена. Обнови сеанс.':'Отправь письмо и перейди по ссылке подтверждения.'}</small></div><button id="verifyFounderButton" class="secondary-btn" type="button">${state.user?.emailVerified?'Обновить статус':'Отправить письмо'}</button></div>`) : `<div class="feature-note">Founder badge выдаётся только подтверждённому аккаунту основателя.</div>`}
     </div>
     <div class="setting-block"><div class="setting-title">Безопасность аккаунта</div>
       <div class="setting-row"><div><strong>Электронная почта</strong><small>${esc(email || 'Не указана')} · подтверждение для входа не требуется</small></div><i class="fa-solid fa-shield-halved" style="color:#68c59a"></i></div>
@@ -811,20 +936,27 @@ async function openSettings() {
         <div class="setting-option"><div class="pref-toggle"><div><label for="prefMotion">Анимация</label><small>Плавные движения и эффекты</small></div><input id="prefMotion" type="checkbox"></div></div>
         <div class="setting-option"><div class="pref-toggle"><div><label for="prefCompact">Компактные сообщения</label><small>Меньше расстояние между репликами</small></div><input id="prefCompact" type="checkbox"></div></div>
         <div class="setting-option"><div class="pref-toggle"><div><label for="prefSound">Звук отправки</label><small>Негромкий сигнал после отправки</small></div><input id="prefSound" type="checkbox"></div></div>
+        <div class="setting-option"><div class="pref-toggle"><div><label for="prefNotifications">Уведомления</label><small>О новых сообщениях, пока приложение открыто</small></div><input id="prefNotifications" type="checkbox"></div></div>
         <div class="setting-option"><label for="prefWallpaper">Оттенок интерфейса</label><select id="prefWallpaper"><option value="crimson">Crimson Blood</option><option value="obsidian">Obsidian Night</option></select></div>
         <div class="setting-option"><label for="prefTypeSize">Размер текста</label><select id="prefTypeSize"><option value="small">Маленький</option><option value="normal">Стандартный</option><option value="large">Крупный</option></select></div>
       </div>
       <div class="setting-row" style="margin-top:10px"><div><strong>Параметры оформления</strong><small>Настройки сохраняются на этом устройстве</small></div><button id="resetPrefsButton" class="secondary-btn" type="button">Сбросить</button></div>
     </div>
+    <div class="setting-block"><div class="setting-title">Данные</div>
+      <div class="setting-row"><div><strong>Экспорт текущего диалога</strong><small>Скачать последние 300 сообщений в TXT</small></div><button id="exportChatButton" class="secondary-btn" type="button" ${state.activeConversation?'':'disabled'}>Экспорт</button></div>
+    </div>
     <div class="setting-block"><div class="setting-title">Защита звонков</div><div class="setting-row"><div><strong>WebRTC · DTLS-SRTP</strong><small>Аудио и видео передаются по зашифрованному WebRTC-каналу. Это защита транспорта, не отдельное приложение E2EE.</small></div><i class="fa-solid fa-shield-halved" style="color:#68c59a"></i></div></div>
     <div class="setting-block"><div class="setting-title">Сеанс</div><div class="setting-row"><div><strong>Выйти из аккаунта</strong><small>Выйти на этом устройстве</small></div><button id="logoutButton" class="danger-btn" type="button">Выйти</button></div></div>`,
     [{ label: 'Закрыть', onClick: closeModal }, { label: 'Сохранить профиль', class: 'secondary-btn', onClick: saveSettings }]);
 
-    $('#prefAmbience').checked=!!userPrefs.ambience;$('#prefMotion').checked=!!userPrefs.motion;$('#prefCompact').checked=!!userPrefs.compact;$('#prefSound').checked=!!userPrefs.sound;$('#prefWallpaper').value=userPrefs.wallpaper||'crimson';$('#prefTypeSize').value=userPrefs.typeSize||'normal';
+    $('#prefAmbience').checked=!!userPrefs.ambience;$('#prefMotion').checked=!!userPrefs.motion;$('#prefCompact').checked=!!userPrefs.compact;$('#prefSound').checked=!!userPrefs.sound;$('#prefNotifications').checked=!!userPrefs.notifications;$('#prefWallpaper').value=userPrefs.wallpaper||'crimson';$('#prefTypeSize').value=userPrefs.typeSize||'normal';
     const bindPref=(id,key,convert=value=>value)=>$('#'+id).addEventListener('change',event=>{userPrefs[key]=convert(event.target.type==='checkbox'?event.target.checked:event.target.value);savePrefs()});
-    bindPref('prefAmbience','ambience');bindPref('prefMotion','motion');bindPref('prefCompact','compact');bindPref('prefSound','sound');bindPref('prefWallpaper','wallpaper');bindPref('prefTypeSize','typeSize');
-    $('#resetPrefsButton').onclick=()=>{userPrefs={...defaultPrefs};savePrefs();$('#prefAmbience').checked=true;$('#prefMotion').checked=true;$('#prefCompact').checked=false;$('#prefSound').checked=false;$('#prefWallpaper').value='crimson';$('#prefTypeSize').value='normal';toast('Настройки оформления сброшены')};
+    bindPref('prefAmbience','ambience');bindPref('prefMotion','motion');bindPref('prefCompact','compact');bindPref('prefSound','sound');$('#prefNotifications').addEventListener('change',async e=>{if(e.target.checked){if(!('Notification' in window)){e.target.checked=false;return toast('Уведомления не поддерживаются этим браузером.',true)}const permission=await Notification.requestPermission();userPrefs.notifications=permission==='granted';e.target.checked=userPrefs.notifications;if(!userPrefs.notifications)toast('Разрешение на уведомления не выдано.',true);else toast('Уведомления включены')}else userPrefs.notifications=false;savePrefs()});bindPref('prefWallpaper','wallpaper');bindPref('prefTypeSize','typeSize');
+    $('#resetPrefsButton').onclick=()=>{userPrefs={...defaultPrefs};savePrefs();$('#prefAmbience').checked=true;$('#prefMotion').checked=true;$('#prefCompact').checked=false;$('#prefSound').checked=false;$('#prefWallpaper').value='crimson';$('#prefTypeSize').value='normal';$('#prefNotifications').checked=false;toast('Настройки оформления сброшены')};
 
+    $('#openAdminButton')?.addEventListener('click',openAdminPanel);
+    $('#exportChatButton')?.addEventListener('click',exportActiveConversation);
+    $('#verifyFounderButton')?.addEventListener('click',async()=>{try{await reload(state.user);state.user=auth.currentUser||state.user;if(!state.user.emailVerified){await sendEmailVerification(state.user);toast('Письмо подтверждения отправлено. Перейди по ссылке в письме, затем нажми эту кнопку ещё раз.');return;}await getIdToken(state.user,true);await ensureUserDocuments(state.user,state.user.displayName);await loadOwnProfile();renderOwnProfile();toast(isFounderAccount()?'Founder Console активирована.':'Статус обновлён; проверь Firebase Authentication.',!isFounderAccount());openSettings()}catch(e){toast(authError(e),true)}});
     $('#logoutButton').onclick = async () => {
         closeModal();
         await endCall(true);
@@ -887,8 +1019,8 @@ async function saveSettings() {
             await deleteDoc(doc(db, 'usernames', oldUsername)).catch(err => console.warn('Старый username не удалён:', err));
         }
         await updateProfile(state.user, { displayName: name }).catch(err => console.warn('Имя в Firebase Auth не обновилось, профиль Firestore уже сохранён:', err));
-        state.profile = { ...state.profile, uid: state.user.uid, displayName: name, username, photoURL, bio };
-        const memberProfile = { displayName: name, photoURL, username };
+        state.profile = { ...state.profile, uid: state.user.uid, displayName: name, username, photoURL, bio, isFounder: !!state.profile?.isFounder };
+        const memberProfile = { displayName: name, photoURL, username, isFounder: !!state.profile?.isFounder };
         await Promise.all(state.conversations.map(conversation =>
             updateDoc(doc(db, 'conversations', conversation.id), {
                 [`memberProfiles.${state.user.uid}`]: memberProfile
@@ -903,12 +1035,17 @@ async function saveSettings() {
         toast(e.message || authError(e), true);
     }
 }
-$('#peerInfoBtn').onclick=()=>{if(!state.activePeer)return;const p=state.activePeer;showModal('Профиль пользователя',`<div class="profile-top">${avatarMarkup(p,'avatar large')}<h3>${esc(p.displayName||'Пользователь')}</h3><p>${p.username?'@'+esc(p.username):'Пользователь Vampgram'}</p></div><div class="setting-block"><div class="setting-title">О себе</div><div style="font-size:11px;color:#bda3ac;line-height:1.8">${esc(p.bio||'Пользователь пока ничего не рассказал о себе.')}</div></div>`,[{label:'Закрыть',onClick:closeModal}])};
+async function exportActiveConversation(){
+  if(!state.activeConversation)return toast('Сначала открой диалог.',true);
+  try{const snap=await getDocs(query(collection(db,'conversations',state.activeConversation.id,'messages'),orderBy('createdAt','asc'),limitToLast(300)));const lines=snap.docs.map(d=>{const m=d.data();const who=m.senderName||'Пользователь';const time=m.createdAt?.toDate?m.createdAt.toDate().toLocaleString('ru-RU'):'';const body=m.text||`[${m.type||'сообщение'}${m.attachment?.name?': '+m.attachment.name:''}]`;return `[${time}] ${who}: ${body}`});const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`vampgram-chat-${Date.now()}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);toast('Экспорт диалога подготовлен')}catch(e){toast('Экспорт не выполнен: '+authError(e),true)}
+}
+$('#peerInfoBtn').onclick=()=>{if(!state.activePeer)return;const p=state.activePeer;if(p.isGroup){showModal('Информация о группе',`<div class="profile-top"><div class="avatar large">${esc(initials(p.displayName))}</div><h3>${esc(p.displayName)}</h3><p>${(state.activeConversation?.members||[]).length} участников</p></div>`,[{label:'Закрыть',onClick:closeModal}]);return}showModal('Профиль пользователя',`<div class="profile-top">${avatarMarkup(p,'avatar large')}<h3>${esc(p.displayName||'Пользователь')}${p.isFounder?' '+founderBadge():''}</h3><p>${p.username?'@'+esc(p.username):'Пользователь Vampgram'}</p></div><div class="setting-block"><div class="setting-title">О себе</div><div style="font-size:11px;color:#bda3ac;line-height:1.8">${esc(p.bio||'Пользователь пока ничего не рассказал о себе.')}</div></div>`,[{label:'Пожаловаться',class:'danger-btn',onClick:()=>submitReport(p.uid)},{label:'Закрыть',onClick:closeModal}])};
 
 /* WebRTC calls with Firestore signaling. Requires HTTPS and camera/microphone permission. */
 const rtcConfig={iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}]};
 async function startCall(kind) {
     if (!state.activePeer || !state.activeConversation) return;
+    if(state.activePeer.isGroup){toast('Звонки в группах пока не поддерживаются. Используй личный диалог.',true);return;}
     if (!navigator.mediaDevices?.getUserMedia || !window.RTCPeerConnection) {
         toast('Для звонков нужен современный браузер и безопасное соединение HTTPS или localhost.', true);
         return;
@@ -986,6 +1123,109 @@ $('#audioCallBtn').onclick=()=>startCall('audio');$('#videoCallBtn').onclick=()=
 // Refresh presence, last seen, and profile changes.
 async function updatePresence(){if(!state.user)return;await updateDoc(doc(db,'users',state.user.uid),{lastSeen:serverTimestamp()}).catch(()=>{})}setInterval(updatePresence,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)updatePresence()});
 window.addEventListener('beforeunload',()=>{state.localStream?.getTracks().forEach(t=>t.stop());state.pc?.close()});
+
+/* ======================== VAMPGRAM 5.0 FEATURES ======================== */
+async function resolveMemberToken(token){
+  const value=String(token||'').trim();if(!value)return null;
+  let uid=null,profile=null;
+  if(value.startsWith('@')){const username=value.slice(1).toLowerCase();const idx=await getDoc(doc(db,'usernames',username));if(idx.exists())uid=idx.data().uid;}
+  else if(value.includes('@')){const key=await hashKey(`email:${value.toLowerCase()}`);const idx=await getDoc(doc(db,'userLookup',key));if(idx.exists())uid=idx.data().uid;}
+  if(!uid||uid===state.user.uid)return null;
+  const snap=await getDoc(doc(db,'users',uid));if(snap.exists())profile={...snap.data(),uid};
+  return profile;
+}
+function openCreateGroup(){
+  showModal('Создать группу',`<div class="feature-note">Добавь до 30 участников через @username или точную почту. Группа будет синхронизироваться через Firestore.</div><div class="field"><label>Название группы</label><input id="groupNameInput" class="modal-input" maxlength="48" placeholder="Например, Ночная смена"></div><div class="field"><label>Участники · через запятую</label><textarea id="groupMembersInput" class="modal-textarea" rows="3" placeholder="@username, user@example.com"></textarea></div><div id="groupCreateStatus" class="feature-note">Нужно добавить хотя бы одного участника.</div>`,[{label:'Отмена',onClick:closeModal},{label:'Создать группу',class:'primary-btn',onClick:createGroup}]);
+}
+async function createGroup(){
+  const title=$('#groupNameInput')?.value.trim();const tokens=($('#groupMembersInput')?.value||'').split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean);const status=$('#groupCreateStatus');
+  if(!title)return toast('Укажи название группы.',true);if(!tokens.length)return toast('Добавь хотя бы одного участника.',true);
+  const btn=$('#modalFoot button:last-child');if(btn)btn.disabled=true;if(status)status.textContent='Поиск участников…';
+  try{
+    const profiles=[];for(const token of tokens){const person=await resolveMemberToken(token);if(person&&!profiles.some(p=>p.uid===person.uid))profiles.push(person)}
+    if(!profiles.length)throw new Error('Не удалось найти участников. Проверь @username или почту.');
+    if(profiles.length>29)throw new Error('Максимум 29 приглашённых плюс создатель.');
+    const members=[state.user.uid,...profiles.map(p=>p.uid)].sort();const memberProfiles={};memberProfiles[state.user.uid]={displayName:state.profile?.displayName||'Пользователь',photoURL:state.profile?.photoURL||'',username:state.profile?.username||'',isFounder:!!state.profile?.isFounder};
+    profiles.forEach(p=>memberProfiles[p.uid]={displayName:p.displayName||'Пользователь',photoURL:p.photoURL||'',username:p.username||'',isFounder:!!p.isFounder});
+    const unread={},readAt={},typing={};members.forEach(uid=>{unread[uid]=0});
+    const ref=await addDoc(collection(db,'conversations'),{members,type:'group',groupName:title,memberProfiles,lastMessage:'Группа создана',updatedAt:serverTimestamp(),createdAt:serverTimestamp(),unread,readAt,typing});
+    const fresh=await getDoc(ref);closeModal();await openConversation({id:ref.id,...fresh.data()},null,{displayName:title});toast('Группа создана');
+  }catch(e){toast(e.message||authError(e),true);if(status)status.textContent=e.message||authError(e);if(btn)btn.disabled=false}
+}
+
+function createStoryDialog(){
+  showModal('Новая история',`<div class="feature-note">История доступна 24 часа. Фото и видео сохраняются частями в Cloud Firestore, без Firebase Storage. Максимальный размер медиа — 4 МБ.</div><div class="field"><label>Текст истории</label><textarea id="storyTextInput" class="modal-textarea" maxlength="500" rows="3" placeholder="Что происходит сегодня?"></textarea></div><div class="field"><label>Фото или видео</label><input id="storyImageInput" class="modal-input file-input" type="file" accept="image/*,video/mp4,video/webm,video/quicktime"><small class="file-hint">Поддерживаются изображения и видео MP4, WebM, MOV до 4 МБ.</small></div>`,[{label:'Отмена',onClick:closeModal},{label:'Опубликовать',class:'primary-btn',onClick:publishStory}]);
+}
+async function publishStory(){
+  const text=$('#storyTextInput')?.value.trim()||'';const file=$('#storyImageInput')?.files?.[0];if(!text&&!file)return toast('Добавь текст или медиафайл.',true);
+  const btn=$('#modalFoot button:last-child');if(btn)btn.disabled=true;
+  let mediaId='';
+  try{
+    let mediaType='',mediaName='';
+    if(file){
+      const isImage=file.type.startsWith('image/'),isVideo=file.type.startsWith('video/');
+      if(!isImage&&!isVideo)throw new Error('Выбери изображение или видео.');
+      if(file.size>4*1024*1024)throw new Error('Файл больше 4 МБ. Сожми его и попробуй снова.');
+      let uploadFile=file;
+      if(isImage)uploadFile=await optimizeImageForFirestore(file,{maxBytes:1500*1024,maxSide:1800});
+      const base64=await fileToBase64(uploadFile);mediaId=`story_${state.user.uid}_${crypto.randomUUID()}`;mediaType=uploadFile.type||file.type;mediaName=file.name||'story-media';
+      await saveMediaBase64(mediaId,{kind:'story',ownerId:state.user.uid,contentType:mediaType,size:uploadFile.size,createdAt:serverTimestamp()},base64);
+    }
+    await addDoc(collection(db,'stories'),{ownerId:state.user.uid,ownerName:state.profile?.displayName||'Пользователь',ownerUsername:state.profile?.username||'',ownerIsFounder:isFounderAccount(),text,mediaId,mediaType,mediaName,createdAt:serverTimestamp(),expiresAt:new Date(Date.now()+24*60*60*1000)});
+    closeModal();await loadStories();toast('История опубликована');
+  }catch(e){
+    if(mediaId)await deleteMediaBase64(mediaId).catch(()=>{});
+    console.error('Publish story failed. Check the operation above this message:',{code:e?.code,message:e?.message,uid:state.user?.uid,email:state.user?.email,verified:state.user?.emailVerified,mediaId});
+    const code=e?.code||'unknown';
+    const stage=code==='permission-denied'?'Firebase Rules отклонили одну из операций (создание media, запись chunks или stories).':'Ошибка публикации';
+    toast(stage+': '+(e.message||authError(e))+' ['+code+']',true);
+    if(btn)btn.disabled=false;
+  }
+}
+async function loadStories(){
+  if(!state.user)return;try{const snap=await getDocs(query(collection(db,'stories'),orderBy('createdAt','desc'),limit(60)));const items=snap.docs.map(d=>({id:d.id,...d.data()})).filter(x=>millis(x.expiresAt)>Date.now());const byOwner=new Map();items.forEach(x=>{if(!byOwner.has(x.ownerId))byOwner.set(x.ownerId,[]);byOwner.get(x.ownerId).push(x)});
+    const rail=$('#storiesRail');rail.innerHTML='';const add=document.createElement('button');add.className='story-chip story-add';add.type='button';add.innerHTML=`<span class="story-ring"><span class="story-initial"><i class="fa-solid fa-plus"></i></span></span><small>Моя история</small>`;add.onclick=createStoryDialog;rail.append(add);
+    for(const [ownerId,stories] of byOwner){const latest=stories[0];const btn=document.createElement('button');btn.className='story-chip';btn.type='button';const ring=document.createElement('span');ring.className='story-ring';if(latest.imageDataUrl){const img=document.createElement('img');img.src=latest.imageDataUrl;ring.append(img)}else{const initial=document.createElement('span');initial.className='story-initial';initial.textContent=initials(latest.ownerName);ring.append(initial)}const label=document.createElement('small');label.textContent=ownerId===state.user.uid?'Мои истории':(latest.ownerName||'Пользователь');btn.append(ring,label);btn.onclick=()=>viewStories(stories);rail.append(btn)}
+  }catch(e){console.warn('Stories load:',e);$('#storiesRail').innerHTML=''}
+}
+function viewStories(stories){let index=0;const render=async()=>{const item=stories[index];const isMine=item.ownerId===state.user.uid;const date=timeText(item.createdAt);let views=0,mediaHtml='';try{if(item.mediaId){const base64=await readMediaBase64(item.mediaId);const src=`data:${item.mediaType||'application/octet-stream'};base64,${base64}`;mediaHtml=item.mediaType?.startsWith('video/')?`<video class="story-view" src="${src}" controls playsinline preload="metadata"></video>`:`<img class="story-view" src="${src}" alt="История">`;}else if(item.imageDataUrl){mediaHtml=`<img class="story-view" src="${item.imageDataUrl}" alt="История">`}}catch(e){mediaHtml='<div class="feature-note">Не удалось загрузить медиа истории.</div>';console.warn('Story media:',e)}try{const viewRef=doc(db,'stories',item.id,'views',state.user.uid);const existing=await getDoc(viewRef);if(!existing.exists())await setDoc(viewRef,{viewerId:state.user.uid,viewedAt:serverTimestamp()});if(isMine){const viewSnap=await getDocs(collection(db,'stories',item.id,'views'));views=viewSnap.size}}catch(e){console.info('Story view receipt:',e.code||e)}showModal('История · '+(item.ownerName||'Пользователь'),`<div style="display:flex;justify-content:space-between;color:#987d87;font-size:9px"><span>${index+1} / ${stories.length}</span><span>${esc(date)}</span></div>${mediaHtml}<div class="story-card"><p>${esc(item.text||'')}</p></div>${item.ownerIsFounder?founderBadge():''}${isMine?`<div class="feature-note">Это твоя история · ${views} просмотров · исчезнет через 24 часа.</div>`:''}`,[{label:'Назад',onClick:()=>{if(index>0){index--;render()}else closeModal()}},{label:index<stories.length-1?'Следующая':'Закрыть',class:'primary-btn',onClick:()=>{if(index<stories.length-1){index++;render()}else closeModal()}},...(isMine?[{label:'Удалить',class:'danger-btn',onClick:async()=>{try{await deleteDoc(doc(db,'stories',item.id));if(item.mediaId)await deleteMediaBase64(item.mediaId);closeModal();await loadStories();toast('История удалена')}catch(e){toast(authError(e),true)}}}]:[])]);};render()}
+
+
+function openChannelsPanel(){loadChannelsPanel().catch(e=>toast('Каналы недоступны: '+authError(e),true))}
+async function loadChannelsPanel(){
+  const snap=await getDocs(query(collection(db,'channels'),orderBy('createdAt','desc'),limit(50)));const channels=snap.docs.map(d=>({id:d.id,...d.data()}));const html=`<div class="feature-note">Публичные каналы: все участники Vampgram могут находить их, подписываться и читать публикации. Писать могут участники канала.</div><div id="channelList">${channels.map(c=>`<div class="channel-row"><div class="avatar small"><i class="fa-solid fa-tower-broadcast"></i></div><div class="grow"><strong>${esc(c.title||'Канал')}</strong><small>${esc(c.description||'')} · ${(c.members||[]).length} подписчиков</small></div><button class="admin-action" data-open-channel="${esc(c.id)}">Открыть</button></div>`).join('')||'<p style="color:#987d87;font-size:11px">Пока каналов нет.</p>'}</div>`;
+  showModal('Каналы Vampgram',html,[{label:'Закрыть',onClick:closeModal},{label:'Создать канал',class:'primary-btn',onClick:createChannelDialog}]);$('#channelList').addEventListener('click',e=>{const b=e.target.closest('[data-open-channel]');if(b)openChannel(b.dataset.openChannel)});
+}
+function createChannelDialog(){showModal('Создать канал',`<div class="field"><label>Название</label><input id="channelTitleInput" class="modal-input" maxlength="48" placeholder="Название канала"></div><div class="field"><label>Описание</label><textarea id="channelDescInput" class="modal-textarea" maxlength="240" rows="3" placeholder="О чём этот канал?"></textarea></div>`,[{label:'Отмена',onClick:openChannelsPanel},{label:'Создать',class:'primary-btn',onClick:async()=>{const title=$('#channelTitleInput').value.trim(),description=$('#channelDescInput').value.trim();if(!title)return toast('Укажи название канала.',true);try{const ref=await addDoc(collection(db,'channels'),{title,description,ownerId:state.user.uid,members:[state.user.uid],createdAt:serverTimestamp(),updatedAt:serverTimestamp()});toast('Канал создан');await openChannel(ref.id)}catch(e){toast(authError(e),true)}}}])}
+async function openChannel(channelId){
+  try{const ref=doc(db,'channels',channelId);let snap=await getDoc(ref);if(!snap.exists())throw new Error('Канал не найден.');let channel={id:channelId,...snap.data()};if(!(channel.members||[]).includes(state.user.uid)){await updateDoc(ref,{members:arrayUnion(state.user.uid),updatedAt:serverTimestamp()});snap=await getDoc(ref);channel={id:channelId,...snap.data()}}
+    const posts=await getDocs(query(collection(db,'channels',channelId,'posts'),orderBy('createdAt','desc'),limit(40)));
+    const content=`<div class="profile-top"><div class="avatar large"><i class="fa-solid fa-tower-broadcast"></i></div><h3>${esc(channel.title)}</h3><p>${(channel.members||[]).length} подписчиков</p></div><div class="field"><label>Новая публикация</label><textarea id="channelPostInput" class="modal-textarea" rows="3" maxlength="3000" placeholder="Написать публикацию…"></textarea><button class="primary-btn" id="publishChannelPost" type="button">Опубликовать</button></div><div class="admin-section-title">Публикации</div><div id="channelPosts">${posts.docs.map(d=>{const v=d.data();return `<div class="channel-post"><small>${esc(v.authorName||'Пользователь')} · ${esc(timeText(v.createdAt))}</small><p>${esc(v.text||'')}</p></div>`}).join('')||'<p style="color:#987d87;font-size:10px">Публикаций пока нет.</p>'}</div>`;
+    showModal('Канал',content,[{label:'К списку каналов',onClick:openChannelsPanel},{label:'Закрыть',class:'secondary-btn',onClick:closeModal}]);$('#publishChannelPost').onclick=async()=>{const text=$('#channelPostInput').value.trim();if(!text)return;try{await addDoc(collection(db,'channels',channelId,'posts'),{authorId:state.user.uid,authorName:state.profile?.displayName||'Пользователь',text,createdAt:serverTimestamp()});toast('Публикация добавлена');await openChannel(channelId)}catch(e){toast('Не удалось опубликовать: '+authError(e),true)}};
+  }catch(e){toast('Канал: '+(e.message||authError(e)),true)}
+}
+
+async function submitReport(targetUid){if(!targetUid)return;const reason=prompt('Кратко опиши причину жалобы:');if(!reason||!reason.trim())return;try{await addDoc(collection(db,'reports'),{reporterId:state.user.uid,targetUid,reason:reason.trim().slice(0,1000),status:'open',createdAt:serverTimestamp()});toast('Жалоба отправлена администрации');closeModal()}catch(e){toast('Не удалось отправить жалобу: '+authError(e),true)}}
+async function adminLog(action,targetUid='',details=''){try{await addDoc(collection(db,'adminLogs'),{actorUid:state.user.uid,actorEmail:state.user.email,action,targetUid,details:String(details).slice(0,500),createdAt:serverTimestamp()})}catch(e){console.warn('Admin log write:',e)}}
+async function openAdminPanel(){
+  if(!isFounderAccount()){toast('Founder Console доступна только подтверждённому аккаунту основателя.',true);return}
+  try{
+    const [usersSnap,reportsSnap,convsSnap,storiesSnap,logsSnap]=await Promise.all([getDocs(query(collection(db,'users'),orderBy('createdAt','desc'),limit(60))),getDocs(query(collection(db,'reports'),orderBy('createdAt','desc'),limit(40))),getDocs(query(collection(db,'conversations'),limit(100))),getDocs(query(collection(db,'stories'),limit(60))),getDocs(query(collection(db,'adminLogs'),orderBy('createdAt','desc'),limit(20)))]);
+    const users=usersSnap.docs.map(d=>({uid:d.id,...d.data()}));const reports=reportsSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const logs=logsSnap.docs.map(d=>d.data());const logsHtml=logs.map(log=>`<div class="channel-post"><small>${esc(log.actorEmail||'Founder')} · ${esc(timeText(log.createdAt))}</small><p>${esc(log.action||'Действие')}${log.targetUid?' · '+esc(log.targetUid):''}${log.details?' · '+esc(log.details):''}</p></div>`).join('')||'<p style="font-size:10px;color:#987d87">Журнал пока пуст.</p>';
+    const userHtml=users.map(u=>`<div class="admin-user"><div class="avatar small">${esc(initials(u.displayName))}</div><div class="grow"><strong>${esc(u.displayName||'Без имени')}${u.isFounder?' '+founderBadge():''}</strong><small>${esc(u.username?'@'+u.username:u.uid)} · ${esc(u.accountStatus||'active')}</small></div>${u.uid!==state.user.uid?`<button class="admin-action ${u.accountStatus==='suspended'?'safe':''}" data-user-action="${u.accountStatus==='suspended'?'restore':'suspend'}" data-uid="${esc(u.uid)}">${u.accountStatus==='suspended'?'Вернуть':'Ограничить'}</button>`:'<small>Ты</small>'}</div>`).join('')||'<p>Нет профилей.</p>';
+    const reportHtml=reports.map(r=>`<div class="admin-report"><div style="flex:1;min-width:0"><strong style="font-size:10px">${esc(r.reason||'Жалоба')}</strong><small style="display:block;color:#987d87;font-size:9px">Цель: ${esc(r.targetUid||'—')} · ${esc(r.status||'open')}</small></div><button class="admin-action safe" data-report-action="close" data-id="${esc(r.id)}">Закрыть</button></div>`).join('')||'<p style="font-size:10px;color:#987d87">Открытых жалоб нет.</p>';
+    showModal('Vampgram · Founder Console',`<div class="feature-note">Подтверждённый Founder-доступ · ${esc(state.user.email)}. Административные действия записываются в журнал.</div><div class="admin-stat-grid"><div class="admin-stat"><strong>${usersSnap.size}</strong><small>Профили в выборке (до 60)</small></div><div class="admin-stat"><strong>${convsSnap.size}</strong><small>Диалоги в выборке (до 100)</small></div><div class="admin-stat"><strong>${reportsSnap.size}</strong><small>Жалобы в выборке</small></div><div class="admin-stat"><strong>${storiesSnap.size}</strong><small>Истории в выборке</small></div></div><div class="admin-section-title">Пользователи</div><div id="adminUsers">${userHtml}</div><div class="admin-section-title">Жалобы</div><div id="adminReports">${reportHtml}</div><div class="admin-section-title">Журнал действий</div><div id="adminLogs">${logsHtml}</div><div class="feature-note">Ограничение доступа в этой версии — внутренняя блокировка Vampgram через accountStatus. Для полного отключения Firebase Authentication, массовых рассылок и безопасного управления ролями нужен доверенный сервер или Cloud Functions.</div>`,[{label:'Закрыть',onClick:closeModal},{label:'Обновить',class:'primary-btn',onClick:openAdminPanel}]);
+    $('#adminUsers').addEventListener('click',async e=>{const b=e.target.closest('[data-user-action]');if(!b)return;const uid=b.dataset.uid,action=b.dataset.userAction;try{await updateDoc(doc(db,'users',uid),{accountStatus:action==='suspend'?'suspended':'active',adminUpdatedAt:serverTimestamp()});await adminLog(action,uid,'Founder Console');toast(action==='suspend'?'Доступ ограничен в Vampgram':'Доступ восстановлен');await openAdminPanel()}catch(err){toast('Ошибка администрирования: '+authError(err),true)}});
+    $('#adminReports').addEventListener('click',async e=>{const b=e.target.closest('[data-report-action]');if(!b)return;try{await updateDoc(doc(db,'reports',b.dataset.id),{status:'closed',closedAt:serverTimestamp(),closedBy:state.user.uid});await adminLog('close_report',b.dataset.id);toast('Жалоба закрыта');await openAdminPanel()}catch(err){toast('Не удалось обновить жалобу: '+authError(err),true)}});
+    await adminLog('open_console','',`users=${usersSnap.size}; reports=${reportsSnap.size}`);
+  }catch(e){console.error('Founder Console:',e);toast('Не удалось открыть админку: '+authError(e),true)}
+}
+
+// Convenience actions and the current device's foreground notification preference.
+$('#storyBtn').onclick=createStoryDialog;$('#groupBtn').onclick=openCreateGroup;$('#channelBtn').onclick=openChannelsPanel;
+window.addEventListener('online',()=>{if(state.user){startRealtime();loadStories().catch(()=>{})}});
+
 let deferredInstallPrompt=null;
 const installButtons=[$('#installAppBtn'),$('#authInstallAppBtn')].filter(Boolean);
 window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstallPrompt=event});
