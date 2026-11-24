@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vampgram-shell-v5-1-502';
+const CACHE_NAME = 'vampgram-shell-v6-2-diamond';
 const SHELL_FILES = ['./', './index.html', './manifest.webmanifest', './vampgram.svg', './favicon.png', './vampgram-192.png', './vampgram-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
@@ -13,8 +13,10 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin) return;
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).then(response => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put('./index.html', copy));
+      if (response && response.ok) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put('./index.html', copy));
+      }
       return response;
     }).catch(() => caches.match('./index.html')));
     return;

@@ -37,6 +37,7 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/media/$(mediaId))
         && (mediaParent(mediaId).kind == 'avatar'
           || (mediaParent(mediaId).kind == 'story')
+          || (mediaParent(mediaId).kind == 'post')
           || request.auth.uid in mediaParent(mediaId).members);
     }
     function canWriteMedia(mediaId) {
@@ -44,6 +45,7 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/media/$(mediaId))
         && ((mediaParent(mediaId).kind == 'avatar' && mediaParent(mediaId).ownerId == request.auth.uid)
           || (mediaParent(mediaId).kind == 'story' && mediaParent(mediaId).ownerId == request.auth.uid)
+          || (mediaParent(mediaId).kind == 'post' && mediaParent(mediaId).ownerId == request.auth.uid)
           || (mediaParent(mediaId).kind == 'attachment' && mediaParent(mediaId).senderId == request.auth.uid));
     }
     function validFounderField() {
@@ -75,16 +77,23 @@ service cloud.firestore {
       allow list: if isFounder();
       allow create: if isOwner(uid)
         && request.resource.data.uid == uid
-        && request.resource.data.keys().hasOnly(['uid','displayName','username','photoURL','bio','isFounder','createdAt','updatedAt','lastSeen'])
+        && request.resource.data.keys().hasOnly(['uid','displayName','username','photoURL','bio','statusText','isFounder','createdAt','updatedAt','lastSeen'])
         && validFounderField();
       allow update: if (isOwner(uid)
           && (!('uid' in resource.data) || resource.data.uid == uid)
           && request.resource.data.uid == uid
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uid','displayName','username','photoURL','bio','isFounder','updatedAt','lastSeen'])
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uid','displayName','username','photoURL','bio','statusText','isFounder','updatedAt','lastSeen'])
           && validFounderField())
         || (isFounder()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['accountStatus','adminNote','adminUpdatedAt']));
       allow delete: if false;
+      match /chatPrefs/{conversationId} {
+        allow get, list: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && request.resource.data.keys().hasOnly(['hidden','clearedAt','updatedAt'])
+          && (!('hidden' in request.resource.data) || request.resource.data.hidden is bool);
+        allow delete: if isOwner(uid);
+      }
     }
 
     match /privateUsers/{uid} {
@@ -211,6 +220,7 @@ service cloud.firestore {
         && (!exists(/databases/$(database)/documents/media/$(mediaId))
           || resource.data.kind == 'avatar'
           || resource.data.kind == 'story'
+          || resource.data.kind == 'post'
           || request.auth.uid in resource.data.members);
       allow list: if false;
       allow create: if activeUser()
@@ -222,6 +232,13 @@ service cloud.firestore {
               && request.resource.data.totalChunks is int && request.resource.data.totalChunks > 0 && request.resource.data.totalChunks <= 3
               && request.resource.data.keys().hasOnly(['kind','ownerId','contentType','size','totalChunks','createdAt','updatedAt']))
           || (request.resource.data.kind == 'story'
+              && request.resource.data.ownerId == request.auth.uid
+              && request.resource.data.contentType is string
+              && request.resource.data.contentType.matches('(image/.*|video/.*)')
+              && request.resource.data.size is int && request.resource.data.size > 0 && request.resource.data.size <= 4194304
+              && request.resource.data.totalChunks is int && request.resource.data.totalChunks > 0 && request.resource.data.totalChunks <= 16
+              && request.resource.data.keys().hasOnly(['kind','ownerId','contentType','size','totalChunks','createdAt','updatedAt']))
+          || (request.resource.data.kind == 'post'
               && request.resource.data.ownerId == request.auth.uid
               && request.resource.data.contentType is string
               && request.resource.data.contentType.matches('(image/.*|video/.*)')
@@ -256,6 +273,7 @@ service cloud.firestore {
       allow delete: if signedIn()
         && ((resource.data.kind == 'avatar' && resource.data.ownerId == request.auth.uid)
           || (resource.data.kind == 'story' && resource.data.ownerId == request.auth.uid)
+          || (resource.data.kind == 'post' && resource.data.ownerId == request.auth.uid)
           || (resource.data.kind == 'attachment' && resource.data.senderId == request.auth.uid));
       match /chunks/{chunkId} {
         allow get, list: if canReadMedia(mediaId);
@@ -302,6 +320,10 @@ service cloud.firestore {
       allow create: if activeUser()
         && request.resource.data.ownerId == request.auth.uid
         && request.resource.data.members is list
+        && (!('admins' in request.resource.data)
+          || (request.resource.data.admins is list
+            && request.resource.data.admins.size() == 1
+            && request.resource.data.admins[0] == request.auth.uid))
         && request.resource.data.members.size() == 1
         && request.auth.uid in request.resource.data.members
         && request.resource.data.title is string
@@ -309,10 +331,10 @@ service cloud.firestore {
         && request.resource.data.title.size() <= 48
         && request.resource.data.description is string
         && request.resource.data.description.size() <= 240
-        && request.resource.data.keys().hasOnly(['title','description','ownerId','members','createdAt','updatedAt']);
+        && request.resource.data.keys().hasOnly(['title','description','ownerId','admins','members','createdAt','updatedAt']);
       allow update: if signedIn() && (
         (resource.data.ownerId == request.auth.uid
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title','description','updatedAt','members']))
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title','description','updatedAt','members','admins']))
         || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members','updatedAt'])
           && request.auth.uid in request.resource.data.members
           && request.resource.data.members.size() == resource.data.members.size() + 1
@@ -322,17 +344,177 @@ service cloud.firestore {
       match /posts/{postId} {
         allow get, list: if signedIn() && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.members;
         allow create: if signedIn()
-          && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.members
+          && (get(/databases/$(database)/documents/channels/$(channelId)).data.ownerId == request.auth.uid
+            || (('admins' in get(/databases/$(database)/documents/channels/$(channelId)).data)
+              && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.admins))
           && request.resource.data.authorId == request.auth.uid
           && request.resource.data.text is string
           && request.resource.data.text.size() > 0
           && request.resource.data.text.size() <= 3000
           && request.resource.data.keys().hasOnly(['authorId','authorName','text','createdAt']);
-        allow update: if signedIn() && resource.data.authorId == request.auth.uid
+        allow update: if signedIn()
+          && (get(/databases/$(database)/documents/channels/$(channelId)).data.ownerId == request.auth.uid
+            || (('admins' in get(/databases/$(database)/documents/channels/$(channelId)).data)
+              && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.admins))
+          && resource.data.authorId == request.auth.uid
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text']);
-        allow delete: if signedIn() && (resource.data.authorId == request.auth.uid
-          || get(/databases/$(database)/documents/channels/$(channelId)).data.ownerId == request.auth.uid);
+        allow delete: if signedIn()
+          && (get(/databases/$(database)/documents/channels/$(channelId)).data.ownerId == request.auth.uid
+            || (('admins' in get(/databases/$(database)/documents/channels/$(channelId)).data)
+              && request.auth.uid in get(/databases/$(database)/documents/channels/$(channelId)).data.admins));
       }
+    }
+
+
+    // Public social feed. Media is stored in Firestore chunks, owned by the author.
+    match /feedPosts/{postId} {
+      allow get, list: if activeUser();
+      allow create: if activeUser()
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.authorName is string
+        && request.resource.data.authorName.size() <= 60
+        && request.resource.data.authorIsFounder == isFounder()
+        && request.resource.data.text is string
+        && request.resource.data.text.size() <= 3000
+        && request.resource.data.likes is list
+        && request.resource.data.likes.size() == 0
+        && request.resource.data.keys().hasOnly(['authorId','authorName','authorUsername','authorPhoto','authorIsFounder','text','mediaId','mediaType','mediaName','likes','createdAt','updatedAt'])
+        && (!('mediaId' in request.resource.data) || request.resource.data.mediaId == null
+          || (request.resource.data.mediaId is string
+            && exists(/databases/$(database)/documents/media/$(request.resource.data.mediaId))
+            && get(/databases/$(database)/documents/media/$(request.resource.data.mediaId)).data.kind == 'post'
+            && get(/databases/$(database)/documents/media/$(request.resource.data.mediaId)).data.ownerId == request.auth.uid));
+      allow update: if activeUser() && (
+        (resource.data.authorId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text','updatedAt']))
+        || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes','updatedAt'])
+          && request.resource.data.likes is list
+          && ((request.resource.data.likes.size() == resource.data.likes.size() + 1
+              && request.auth.uid in request.resource.data.likes
+              && !(request.auth.uid in resource.data.likes)
+              && request.resource.data.likes.hasAll(resource.data.likes))
+            || (request.resource.data.likes.size() == resource.data.likes.size() - 1
+              && !(request.auth.uid in request.resource.data.likes)
+              && request.auth.uid in resource.data.likes
+              && resource.data.likes.hasAll(request.resource.data.likes)))));
+      allow delete: if activeUser() && (resource.data.authorId == request.auth.uid || isFounder());
+      match /comments/{commentId} {
+        allow get, list: if activeUser();
+        allow create: if activeUser()
+          && request.resource.data.authorId == request.auth.uid
+          && request.resource.data.authorName is string
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 1000
+          && request.resource.data.keys().hasOnly(['authorId','authorName','text','createdAt']);
+        allow update: if false;
+        allow delete: if activeUser() && (resource.data.authorId == request.auth.uid
+          || get(/databases/$(database)/documents/feedPosts/$(postId)).data.authorId == request.auth.uid
+          || isFounder());
+      }
+      match /likes/{uid} {
+        allow get, list: if activeUser();
+        allow create: if isOwner(uid) && request.resource.data.keys().hasOnly(['uid','createdAt']) && request.resource.data.uid == uid;
+        allow delete: if isOwner(uid);
+        allow update: if false;
+      }
+    }
+
+    match /communities/{communityId} {
+      allow get, list: if activeUser();
+      allow create: if activeUser()
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 48
+        && request.resource.data.description is string
+        && request.resource.data.description.size() <= 240
+        && request.resource.data.members is list
+        && request.resource.data.members.size() == 1
+        && request.auth.uid in request.resource.data.members
+        && request.resource.data.keys().hasOnly(['name','description','ownerId','members','createdAt','updatedAt']);
+      allow update: if activeUser() && (
+        (resource.data.ownerId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','description','updatedAt']))
+        || (request.auth.uid != resource.data.ownerId
+          && !(request.auth.uid in resource.data.members)
+          && request.auth.uid in request.resource.data.members
+          && request.resource.data.members.size() == resource.data.members.size() + 1
+          && request.resource.data.members.hasAll(resource.data.members)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members','updatedAt']))
+        || (request.auth.uid != resource.data.ownerId
+          && request.auth.uid in resource.data.members
+          && !(request.auth.uid in request.resource.data.members)
+          && request.resource.data.members.size() == resource.data.members.size() - 1
+          && resource.data.members.hasAll(request.resource.data.members)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members','updatedAt'])));
+      allow delete: if activeUser() && (resource.data.ownerId == request.auth.uid || isFounder());
+      match /posts/{postId} {
+        allow get, list: if activeUser()
+          && request.auth.uid in get(/databases/$(database)/documents/communities/$(communityId)).data.members;
+        allow create: if activeUser()
+          && request.auth.uid in get(/databases/$(database)/documents/communities/$(communityId)).data.members
+          && request.resource.data.authorId == request.auth.uid
+          && request.resource.data.authorName is string
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 2000
+          && request.resource.data.keys().hasOnly(['authorId','authorName','text','createdAt']);
+        allow update: if false;
+        allow delete: if activeUser() && (resource.data.authorId == request.auth.uid
+          || get(/databases/$(database)/documents/communities/$(communityId)).data.ownerId == request.auth.uid
+          || isFounder());
+      }
+    }
+
+    match /users/{uid}/savedPosts/{postId} {
+      allow get, list: if isOwner(uid);
+      allow create: if isOwner(uid)
+        && request.resource.data.postId == postId
+        && request.resource.data.keys().hasOnly(['postId','createdAt'])
+        && exists(/databases/$(database)/documents/feedPosts/$(postId));
+      allow delete: if isOwner(uid);
+      allow update: if false;
+    }
+
+    match /notifications/{uid}/items/{notificationId} {
+      allow get, list: if isOwner(uid);
+      allow create: if activeUser()
+        && request.resource.data.actorUid == request.auth.uid
+        && request.resource.data.recipientUid == uid
+        && uid != request.auth.uid
+        && request.resource.data.type in ['like','comment','follow']
+        && request.resource.data.postId is string
+        && request.resource.data.keys().hasOnly(['recipientUid','actorUid','actorName','type','postId','preview','read','createdAt']);
+      allow update: if isOwner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read','readAt']);
+      allow delete: if isOwner(uid);
+    }
+
+    // User follow graph. Private outgoing list + readable follower mirror for profile counts.
+    match /follows/{uid}/following/{targetUid} {
+      allow get, list: if isOwner(uid);
+      allow create: if isOwner(uid)
+        && targetUid != uid
+        && exists(/databases/$(database)/documents/users/$(targetUid))
+        && request.resource.data.followerUid == uid
+        && request.resource.data.targetUid == targetUid
+        && request.resource.data.keys().hasOnly(['followerUid','targetUid','createdAt']);
+      allow delete: if isOwner(uid);
+      allow update: if false;
+    }
+
+    match /followers/{targetUid}/users/{followerUid} {
+      allow get, list: if activeUser();
+      allow create: if activeUser()
+        && followerUid == request.auth.uid
+        && targetUid != request.auth.uid
+        && exists(/databases/$(database)/documents/users/$(targetUid))
+        && request.resource.data.followerUid == followerUid
+        && request.resource.data.targetUid == targetUid
+        && request.resource.data.keys().hasOnly(['followerUid','targetUid','createdAt']);
+      allow delete: if activeUser() && resource.data.followerUid == request.auth.uid;
+      allow update: if false;
     }
 
     match /reports/{reportId} {
